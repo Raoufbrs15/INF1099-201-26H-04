@@ -1,4 +1,4 @@
-\# 🐘 TP PostgreSQL – Gestion des utilisateurs et permissions (DCL)
+# 🐘 TP PostgreSQL – Gestion des utilisateurs et permissions (DCL)
 
 
 
