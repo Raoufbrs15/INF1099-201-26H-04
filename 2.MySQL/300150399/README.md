@@ -1,214 +1,190 @@
-\# TP INF1099 – Automatisation de la base Sakila avec Docker / Podman
+# TP INF1099 – Automatisation de la base Sakila avec Docker / Podman
 
-
-
-\## Étudiant
-
-Nom : Chakib Rahmani  
-
-Numéro étudiant : 300150399  
-
-Cours : INF1099  
-
-Sujet : Automatisation du déploiement de la base Sakila avec Docker (Podman) et MySQL 8
+**Nom :** Rahmani Chakib  
+**Numéro étudiant :** 300150399  
 
 ---
 
+# Objectif
 
+Ce TP consiste à automatiser le déploiement de la base de données **Sakila** en utilisant **Docker (Podman)** et **MySQL 8**.
 
-\## Objectif du TP
+Les étapes incluent :
 
-L’objectif de ce travail est de mettre en place un environnement MySQL conteneurisé permettant :
-
-\- le lancement d’un serveur MySQL avec Docker (via Podman),
-
-\- la création de la base de données Sakila,
-
-\- la création d’un utilisateur applicatif (etudiants),
-
-\- l’importation du schéma et des données Sakila,
-
-\- la vérification du bon fonctionnement à l’aide de requêtes SQL.
-
-
-
-L’ensemble du processus est automatisable et reproductible.
+- lancement d’un conteneur MySQL
+- création de la base Sakila
+- création d’un utilisateur applicatif
+- importation du schéma et des données
+- vérification avec des requêtes SQL
 
 ---
 
+# Environnement utilisé
 
-
-\## Environnement utilisé
-
-\- Système d’exploitation : Windows  
-
-\- Shell : PowerShell  
-
-\- Moteur de conteneurs : Podman (alias Docker)  
-
-\- Image Docker : mysql:8.0  
-
-\- Base de données : MySQL 8  
-
-\- Jeu de données : Sakila
+- Windows  
+- PowerShell  
+- Podman (alias Docker)  
+- MySQL 8  
+- Base Sakila  
 
 ---
 
-
-
-\## Étape 1 – Création du dossier du projet
-
-Création du dossier INF1099 dans le répertoire Downloads afin de centraliser les fichiers du TP.
-
-
-
-!\[Création du dossier](images/creation\_de\_chemin.png)
-
----
-
-
-
-\## Étape 2 – Initialisation de Podman
-
-Initialisation et démarrage de la machine virtuelle Podman pour permettre l’exécution des conteneurs Docker.
-
-
-
-!\[Podman](images/podman.png)
-
----
-
-
-
----
-
-
-
-\## Étape 3 – Lancement du conteneur MySQL
-
-
-
-Lancement du conteneur MySQL avec un mot de passe root et l’exposition du port MySQL.
-
-
+# Étape 1 – Vérification de Podman
 
 Commande utilisée :
 
-docker run -d --name INF1099-mysql -e MYSQL\_ROOT\_PASSWORD=rootpass -p 3306:3306 mysql:8.0
+
+podman --version
+Set-Alias docker podman
 
 
-
-!\[MySQL](images/my\_sql.png)
+![Screenshot 1](images/1.png)
 
 ---
 
+# Étape 2 – Création du dossier du projet
+
+Commandes utilisées :
 
 
-\## Étape 4 – Création de la base de données Sakila
+$projectDir = "$env:USERPROFILE\Downloads\INF1099"
+New-Item -ItemType Directory -Force -Path $projectDir
+Set-Location $projectDir
+pwd
 
 
+![Screenshot 2](images/2.png)
 
-Création de la base de données sakila à l’intérieur du conteneur MySQL.
+---
+
+# Étape 3 – Initialisation de Podman
+
+Commandes utilisées :
 
 
+podman machine init
+podman machine start
+
+
+![Screenshot 3](images/3.png)
+
+---
+
+# Étape 4 – Lancement du conteneur MySQL
 
 Commande utilisée :
 
-docker exec -it INF1099-mysql mysql -u root -p -e "CREATE DATABASE sakila;"
 
+docker run -d --name INF1099-mysql -e MYSQL_ROOT_PASSWORD=rootpass -p 3306:3306 mysql:8.0
 
 
 Vérification :
 
-docker exec -it INF1099-mysql mysql -u root -p -e "SHOW DATABASES;"
+
+docker ps
 
 
-
-!\[Sakila](images/sakila\_creation.png)
-
----
-
-
-
-\## Étape 5 – Création de l’utilisateur etudiants
-
-
-
-Création de l’utilisateur etudiants afin de permettre un accès applicatif à la base de données Sakila.
-
-
-
-Commande utilisée :
-
-docker exec -it INF1099-mysql mysql -u root -p -e "CREATE USER 'etudiants'@'%' IDENTIFIED BY 'etudiants\_1';"
-
-
-
-Attribution des privilèges :
-
-docker exec -it INF1099-mysql mysql -u root -p -e "GRANT ALL PRIVILEGES ON sakila.\* TO 'etudiants'@'%' WITH GRANT OPTION;"
-
-
-
-!\[Utilisateur](images/etudiant.png)
+![Screenshot 4](images/4.png)
 
 ---
 
+# Étape 5 – Création de la base de données Sakila
+
+Commande :
 
 
-\## Étape 6 – Importation du schéma Sakila
+docker exec -it INF1099-mysql mysql -u root -prootpass -e "CREATE DATABASE sakila;"
 
 
-
-Importation du schéma de la base Sakila à partir du fichier sakila-schema.sql.
-
+Vérification :
 
 
-Commande utilisée :
-
-Get-Content "$projectDir\\sakila-db\\sakila-schema.sql" | docker exec -i INF1099-mysql mysql -u etudiants -petudiants\_1 sakila
-
----
+SHOW DATABASES;
 
 
-
-\## Étape 7 – Importation des données Sakila
-
-
-
-Importation des données Sakila à partir du fichier sakila-data.sql.
-
-
-
-Commande utilisée :
-
-Get-Content "$projectDir\\sakila-db\\sakila-data.sql" | docker exec -i INF1099-mysql mysql -u etudiants -petudiants\_1 sakila
+![Screenshot 5](images/5.png)
 
 ---
 
+# Étape 6 – Création de l’utilisateur etudiants
+
+Commandes :
 
 
-\## Étape 8 – Vérification de l’importation
+CREATE USER 'etudiants'@'%' IDENTIFIED BY 'etudiants_1';
+GRANT ALL PRIVILEGES ON sakila.* TO 'etudiants'@'%';
+FLUSH PRIVILEGES;
 
 
+![Screenshot 6](images/6.png)
 
-Vérification de la présence des tables dans la base Sakila.
+---
 
-
+# Étape 7 – Vérification des fichiers Sakila
 
 Commande utilisée :
 
-docker exec -it INF1099-mysql mysql -u etudiants -petudiants\_1 -e "USE sakila; SHOW TABLES;"
+
+Get-ChildItem "$projectDir" -Recurse -Filter "*.sql"
 
 
+Les fichiers trouvés :
 
-Les tables principales (actor, film, customer, rental, inventory, etc.) sont bien présentes.
+- sakila-schema.sql  
+- sakila-data.sql  
+
+![Screenshot 7](images/7.png)
+
+---
+
+# Étape 8 – Importation du schéma Sakila
+
+Commande :
 
 
-
-!\[Importation](images/importation.png)
-
+Get-Content "$projectDir\sakila-db\sakila-schema.sql" | docker exec -i INF1099-mysql mysql -u etudiants -petudiants_1 sakila
 
 
+![Screenshot 8](images/8.png)
+
+---
+
+# Étape 9 – Importation des données Sakila
+
+Commande :
 
 
+Get-Content "$projectDir\sakila-db\sakila-data.sql" | docker exec -i INF1099-mysql mysql -u etudiants -petudiants_1 sakila
+
+
+![Screenshot 9](images/9.png)
+
+---
+
+# Étape 10 – Vérification de la base
+
+Commande utilisée :
+
+
+docker exec -it INF1099-mysql mysql -u etudiants -petudiants_1 -e "USE sakila; SHOW TABLES;"
+
+
+Exemples de requêtes SQL :
+
+
+SELECT COUNT() FROM actor;
+SELECT title, release_year FROM film LIMIT 10;
+SELECT rating, COUNT() FROM film GROUP BY rating;
+SELECT first_name, last_name, email FROM customer LIMIT 10;
+
+
+![Screenshot 10](images/10.png)
+
+---
+
+# Conclusion
+
+La base de données Sakila a été déployée avec succès dans un conteneur MySQL à l’aide de Podman.  
+Les tables ont été créées et les données importées correctement, comme confirmé par les requêtes SQL exécutées.
+
+Cette méthode permet de déployer rapidement une base de données dans un environnement conteneurisé et reproductible.
