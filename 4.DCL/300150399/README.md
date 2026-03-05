@@ -4,13 +4,9 @@
 
 ## 👨‍🎓 Étudiant
 
-### Nom : ** Rahmani Chakib  
+### Nom : Rahmani Chakib  
 
-### Numéro étudiant : ** 300150399  
-
-### Cours : ** INF1099  
-
-
+### Numéro étudiant : 300150399  
 
 ---
 
