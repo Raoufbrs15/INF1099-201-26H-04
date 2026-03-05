@@ -112,7 +112,7 @@ Une fois la commande exécutée, l’invite `postgres=#` apparaît, indiquant qu
 
 
 
-!\[Connexion PostgreSQL](images/1.png)
+!\[Connexion PostgreSQL](./images/1.png)
 
 
 
@@ -160,7 +160,7 @@ Cette commande change la base de données active dans \*\*psql\*\* et permet d�
 
 
 
-!\[Création de la base de données](images/2.png)
+!\[Création de la base de données](./images/2.png)
 
 
 
@@ -226,7 +226,7 @@ Cette table sera utilisée pour tester les permissions des différents utilisate
 
 
 
-!\[Création du schéma et de la table](images/3.png)
+!\[Création du schéma et de la table](./images/3.png)
 
 
 
