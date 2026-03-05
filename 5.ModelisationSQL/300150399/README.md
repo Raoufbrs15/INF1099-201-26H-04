@@ -388,7 +388,7 @@ Ce travail pratique a permis de concevoir et d'implémenter une base de données
 
 ---
 
-*Made with ❤️ by **Chakib Rahmani***
+*Made by the one and only **Chkips*** 
 
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Podman](https://img.shields.io/badge/Podman-Container-892CA0?style=flat-square&logo=podman&logoColor=white)](https://podman.io/)
