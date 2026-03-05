@@ -1,320 +1,181 @@
-\# PostgreSQL Sakila Database (Podman + pgAdmin4)
-
-
-
-\## Étudiant
-
-Nom : Rahmani Chakib  
-
-Numéro étudiant : 300150399  
-
-Cours : INF1099  
-
-
+# PostgreSQL Sakila Database  
+### Podman + pgAdmin4
 
 ---
 
+## 👨‍🎓 Étudiant
 
+**Nom :** Rahmani Chakib  
+**Numéro étudiant :** 300150399  
+**Cours :** INF1099  
 
-\# Objectif du TP
+---
 
-
+# 🎯 Objectif du TP
 
 Ce laboratoire a pour objectif de :
 
-
-
-\- Installer PostgreSQL dans un conteneur avec Podman
-
-\- Charger la base de données Sakila dans PostgreSQL
-
-\- Vérifier les données avec psql
-
-\- Se connecter à PostgreSQL via pgAdmin 4
-
-\- Exécuter des requêtes SQL pour valider l'importation des données
-
-
+- Installer PostgreSQL dans un conteneur avec **Podman**
+- Importer la base de données **Sakila**
+- Vérifier les données avec **psql**
+- Se connecter avec **pgAdmin 4**
+- Exécuter des requêtes SQL pour valider l’importation
 
 ---
 
+# 💻 Environnement utilisé
 
-
-\# Environnement utilisé
-
-
-
-\- Windows 11
-
-\- PowerShell
-
-\- Podman
-
-\- PostgreSQL 16 (conteneur)
-
-\- pgAdmin 4
-
-
+| Outil | Version |
+|------|------|
+| OS | Windows 11 |
+| Terminal | PowerShell |
+| Conteneur | Podman |
+| Base de données | PostgreSQL 16 |
+| Interface graphique | pgAdmin 4 |
 
 ---
 
-
-
-\# 1. Lancement de PostgreSQL avec Podman
-
-
+# 🚀 1. Lancement de PostgreSQL avec Podman
 
 Commande utilisée :
 
-
-
-
-
-podman run -d
-
---name postgres
-
--e POSTGRES\_USER=postgres
-
--e POSTGRES\_PASSWORD=postgres
-
--e POSTGRES\_DB=appdb
-
--p 5432:5432
-
--v postgres\_data:/var/lib/postgresql/data
-
+```bash
+podman run -d \
+--name postgres \
+-e POSTGRES_USER=postgres \
+-e POSTGRES_PASSWORD=postgres \
+-e POSTGRES_DB=appdb \
+-p 5432:5432 \
+-v postgres_data:/var/lib/postgresql/data \
 postgres:16
+```
 
+Vérification du conteneur :
 
-
-
-
-Vérification :
-
-
-
-
-
+```bash
 podman ps
-
-
-
-
+```
 
 ---
 
-
-
-\# 2. Importation de la base Sakila
-
-
+# 📥 2. Téléchargement de la base Sakila
 
 Téléchargement du schéma :
 
-
-
-
-
-Invoke-WebRequest https://raw.githubusercontent.com/jOOQ/sakila/master/postgres-sakila-db/postgres-sakila-schema.sql
-
-&nbsp;-OutFile postgres-sakila-schema.sql
-
-
-
-
+```powershell
+Invoke-WebRequest https://raw.githubusercontent.com/jOOQ/sakila/master/postgres-sakila-db/postgres-sakila-schema.sql -OutFile postgres-sakila-schema.sql
+```
 
 Téléchargement des données :
 
-
-
-
-
-Invoke-WebRequest https://raw.githubusercontent.com/jOOQ/sakila/master/postgres-sakila-db/postgres-sakila-insert-data.sql
-
-&nbsp;-OutFile postgres-sakila-insert-data.sql
-
-
-
-
-
-Copie dans le conteneur :
-
-
-
-
-
-podman cp postgres-sakila-schema.sql postgres:/schema.sql
-
-podman cp postgres-sakila-insert-data.sql postgres:/data.sql
-
-
-
-
-
-Importation :
-
-
-
-
-
-podman exec -it postgres psql -U postgres -d appdb -f /schema.sql
-
-podman exec -it postgres psql -U postgres -d appdb -f /data.sql
-
-
-
-
+```powershell
+Invoke-WebRequest https://raw.githubusercontent.com/jOOQ/sakila/master/postgres-sakila-db/postgres-sakila-insert-data.sql -OutFile postgres-sakila-insert-data.sql
+```
 
 ---
 
+# 🗄️ 3. Importation de la base Sakila
 
+Copie des fichiers dans le conteneur :
 
-\# 3. Vérification avec psql
+```powershell
+podman cp postgres-sakila-schema.sql postgres:/schema.sql
+podman cp postgres-sakila-insert-data.sql postgres:/data.sql
+```
 
+Import du schéma :
 
+```powershell
+podman exec -it postgres psql -U postgres -d appdb -f /schema.sql
+```
+
+Import des données :
+
+```powershell
+podman exec -it postgres psql -U postgres -d appdb -f /data.sql
+```
+
+---
+
+# 🔎 4. Vérification avec psql
 
 Liste des tables :
 
-
-
-
-
-podman exec -it postgres psql -U postgres -d appdb -c "\\dt"
-
-
-
-
+```powershell
+podman exec -it postgres psql -U postgres -d appdb -c "\dt"
+```
 
 Vérification du nombre de films :
 
+```powershell
+podman exec -it postgres psql -U postgres -d appdb -c "SELECT COUNT(*) FROM film;"
+```
 
+Résultat attendu :
 
+```
+1000
+```
 
+### 📷 Capture
 
-podman exec -it postgres psql -U postgres -d appdb -c "SELECT COUNT(\*) FROM film;"
-
-
-
-
-
-Résultat attendu : \*\*1000 films\*\*
-
-
-
-Capture :
-
-
-
-!\[Vérification nombre de films](images/2.png)
-
-
+![Tables](./images/2.png)
 
 ---
 
-
-
-\# 4. Exemple de requête (films contenant "Star")
-
-
+# ⭐ 5. Requête SQL (films contenant "Star")
 
 Requête exécutée :
 
-
-
-
-
+```sql
 SELECT title FROM film WHERE title ILIKE '%Star%';
-
-
-
-
+```
 
 Résultat :
 
+- STAR OPERATION  
+- TURN STAR  
 
+### 📷 Capture
 
-\- STAR OPERATION
-
-\- TURN STAR
-
-
-
-Capture :
-
-
-
-!\[Requête Star](images/1.png)
-
-
+![Requête Star](./images/1.png)
 
 ---
 
-
-
-\# 5. Vérification dans pgAdmin
-
-
+# 🧰 6. Vérification dans pgAdmin
 
 Connexion au serveur PostgreSQL :
 
-
-
-Host : localhost  
-
-Port : 5432  
-
-User : postgres  
-
-Password : postgres  
-
-Database : appdb  
-
-
+| Paramètre | Valeur |
+|----------|-------|
+| Host | localhost |
+| Port | 5432 |
+| User | postgres |
+| Password | postgres |
+| Database | appdb |
 
 Requête exécutée :
 
+```sql
+SELECT * FROM film;
+```
 
+### 📷 Capture
 
-
-
-SELECT \* FROM film;
-
-
-
-
-
-Capture :
-
-
-
-!\[Résultat pgAdmin](images/3.png)
-
-
+![Résultat pgAdmin](./images/3.png)
 
 ---
 
-
-
-\# Conclusion
-
-
+# ✅ Conclusion
 
 Ce laboratoire a permis de :
 
+- Déployer PostgreSQL dans un conteneur **Podman**
+- Importer la base de données **Sakila**
+- Vérifier les données avec **psql**
+- Se connecter via **pgAdmin**
+- Exécuter des requêtes SQL pour valider l’importation
 
+La base **Sakila contient 1000 films**, confirmant que l’importation a été réalisée avec succès.
 
-\- Déployer PostgreSQL avec Podman
-
-\- Importer la base de données Sakila
-
-\- Vérifier les tables et les données avec psql
-
-\- Se connecter via pgAdmin
-
-\- Exécuter des requêtes SQL pour valider l'importation
-
-
-
-La base \*\*Sakila contient 1000 films\*\*, confirmant que l'importation a été réalisée avec succès.
-
+---
