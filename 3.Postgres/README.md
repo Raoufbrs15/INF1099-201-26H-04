@@ -1,5 +1,7 @@
 # PostgreSQL DB 🧻 
 
+[:tada: Participation](.scripts/Participation.md)
+
 ## Objectifs
 
 À la fin de cette leçon, l’étudiant sera capable de :
@@ -18,7 +20,7 @@
 - [ ] 🐧 Unix
 
 ```bash
-docker run -d \
+docker container run -d \
   --name postgres \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=postgres \
@@ -31,7 +33,7 @@ docker run -d \
 - [ ] 🪟 Windows
 
 ```bash
-docker run -d `
+docker container run -d `
   --name postgres `
   -e POSTGRES_USER=postgres `
   -e POSTGRES_PASSWORD=postgres `
@@ -54,8 +56,8 @@ docker run -d `
 ### Étape 2 : Vérifier que PostgreSQL fonctionne
 
 ```bash
-docker ps
-docker logs postgres
+docker container ls
+docker container logs postgres
 ```
 
 ---
@@ -87,21 +89,21 @@ Invoke-WebRequest `
 ### Étape 2 : Copier les fichiers dans le conteneur
 
 ```bash
-docker cp postgres-sakila-schema.sql postgres:/schema.sql
-docker cp postgres-sakila-insert-data.sql postgres:/data.sql
+docker container cp postgres-sakila-schema.sql postgres:/schema.sql
+docker container cp postgres-sakila-insert-data.sql postgres:/data.sql
 ```
 
 ### Étape 3 : Exécuter les fichiers SQL dans PostgreSQL
 
 ```bash
-docker exec -it postgres psql -U postgres -d appdb -f /schema.sql
-docker exec -it postgres psql -U postgres -d appdb -f /data.sql
+docker container exec -it postgres psql -U postgres -d appdb -f /schema.sql
+docker container exec -it postgres psql -U postgres -d appdb -f /data.sql
 ```
 
 ### Étape 4 : Vérifier que les tables Sakila sont présentes
 
 ```bash
-docker exec -it postgres psql -U postgres -d appdb
+docker container exec -it postgres psql -U postgres -d appdb
 ```
 
 ```sql
@@ -275,6 +277,69 @@ SELECT * FROM film WHERE title ILIKE '%star%';
 
 ---
 
+**Commandes `psql` essentielles pour l’administration PostgreSQL**, 
+
+| Commande                                  | Type    | Effet / Explication courte                                                                      |
+| ----------------------------------------- | ------- | ----------------------------------------------------------------------------------------------- |
+| `psql -U user -d db`                      | SA      | Se connecter à la base `db` avec l’utilisateur `user`.                                          |
+| `psql -h host -U user -d db`              | SA      | Connexion distante à la base sur `host`.                                                        |
+| `\q`                                      | TF / SA | Quitte le client `psql`.                                                                        |
+| `\l` ou `\list`                           | SA      | Affiche toutes les bases de données disponibles.                                                |
+| `\du`                                     | SA      | Affiche tous les rôles et utilisateurs avec leurs privilèges.                                   |
+| `\dt`                                     | SA      | Liste toutes les tables de la base courante.                                                    |
+| `\d table`                                | SA      | Affiche la structure (schéma) de la table spécifiée.                                            |
+| `\password [user]`                        | SA      | Change le mot de passe du rôle indiqué ; si aucun rôle, change le mot de passe du rôle courant. |
+| `SET ROLE role_name;`                     | SA      | Change le rôle actif dans la session psql, pour exécuter des commandes avec ses privilèges.     |
+| `\copy table TO 'file.csv' CSV HEADER;`   | SA      | Exporte les données d’une table vers un fichier CSV.                                            |
+| `\copy table FROM 'file.csv' CSV HEADER;` | SA      | Importe les données depuis un fichier CSV vers la table.                                        |
+| `psql -f fichier.sql`                     | SA      | Exécute un script SQL depuis un fichier dans la base courante.                                  |
+| `\x`                                      | TF / SA | Active/désactive le formatage étendu pour les résultats (plus lisible pour les tables larges).  |
+| `\watch n`                                | SA      | Réexécute la dernière commande toutes les `n` secondes (utile pour le monitoring).              |
+| `\conninfo`                               | SA      | Affiche les informations sur la connexion actuelle (base, utilisateur, host, port).             |
+
+---
+
+
 # :books: References
 
+Pour supprimer le conteneur :
 
+```bash
+docker container rm -f postgres
+```
+
+Mais **il faut aussi supprimer le volume** :
+
+```bash
+-v postgres_data:/var/lib/postgresql/data
+```
+
+---
+
+# 🔥 Si tu veux TOUT remettre à zéro
+
+## 1️⃣ Stop + supprimer le conteneur
+
+```bash
+docker container rm -f postgres
+```
+
+## 2️⃣ Supprimer le volume
+
+⚠️ ATTENTION : ça efface toutes les données
+
+```bash
+docker volume rm postgres_data
+```
+
+Vérifie :
+
+```bash
+docker volume ls
+```
+
+---
+
+
+
+# 📝 PostgreSQL / [psql Cheat Sheet](.psql)

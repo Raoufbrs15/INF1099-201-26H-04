@@ -26,10 +26,47 @@ jobs:
           bash .scripts/run.sh
           cd ..
           ##
+          ## Evaluating chapter P.Programmation
+          ## 
+          echo "Evaluating chapter P.Programmation Participation"
+          cd P.Programmation/1.IDE
+          bash .scripts/run.sh
+          cd ../2.Jupyter
+          bash .scripts/run.sh
+          cd ../..
+          ##
           ## Evaluating chapter 1.Domaines
           ## 
           echo "Evaluating chapter 1.Domaines Participation"
           cd 1.Domaines
+          bash .scripts/run.sh
+          cd ..
+          ##
+          ## Evaluating chapter 2.MySQL
+          ## 
+          echo "Evaluating chapter 2.MySQL Participation"
+          cd 2.MySQL
+          bash .scripts/run.sh
+          cd ..
+          ##
+          ## Evaluating chapter 3.Postgres
+          ## 
+          echo "Evaluating chapter 3.Postgres Participation"
+          cd 3.Postgres
+          bash .scripts/run.sh
+          cd ..
+          ##
+          ## Evaluating chapter 4.DCL
+          ## 
+          echo "Evaluating chapter 4.DCL Participation"
+          cd 4.DCL
+          bash .scripts/run.sh
+          cd ..
+          ##
+          ## Evaluating chapter 5.ModelisationSQL
+          ## 
+          echo "Evaluating chapter 5.ModelisationSQL Participation"
+          cd 5.ModelisationSQL
           bash .scripts/run.sh
           cd ..
 

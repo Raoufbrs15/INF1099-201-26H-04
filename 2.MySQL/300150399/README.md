@@ -3,6 +3,16 @@
 **Nom :** Rahmani Chakib  
 **Numéro étudiant :** 300150399  
 
+
+## Étudiant
+
+Nom : Chakib Rahmani  
+
+Numéro étudiant : 300150399  
+
+Cours : INF1099  
+
+Sujet : Automatisation du déploiement de la base Sakila avec Docker (Podman) et MySQL 8
 ---
 
 # Objectif
@@ -10,6 +20,7 @@
 Ce TP consiste à automatiser le déploiement de la base de données **Sakila** en utilisant **Docker (Podman)** et **MySQL 8**.
 
 Les étapes incluent :
+## Objectif du TP
 
 - lancement d’un conteneur MySQL
 - création de la base Sakila
@@ -20,7 +31,6 @@ Les étapes incluent :
 ---
 
 # Environnement utilisé
-
 - Windows  
 - PowerShell  
 - Podman (alias Docker)  
@@ -30,6 +40,59 @@ Les étapes incluent :
 ---
 
 # Étape 1 – Vérification de Podman
+
+## Environnement utilisé
+
+\- Système d’exploitation : Windows  
+
+\- Shell : PowerShell  
+
+\- Moteur de conteneurs : Podman (alias Docker)  
+
+\- Image Docker : mysql:8.0  
+
+\- Base de données : MySQL 8  
+
+\- Jeu de données : Sakila
+
+---
+
+
+
+## Étape 1 – Création du dossier du projet
+
+Création du dossier INF1099 dans le répertoire Downloads afin de centraliser les fichiers du TP.
+
+
+
+!\[Création du dossier](images/creation\_de\_chemin.png)
+
+---
+
+
+
+## Étape 2 – Initialisation de Podman
+
+Initialisation et démarrage de la machine virtuelle Podman pour permettre l’exécution des conteneurs Docker.
+
+
+
+!\[Podman](images/podman.png)
+
+---
+
+
+
+---
+
+
+
+## Étape 3 – Lancement du conteneur MySQL
+
+
+
+Lancement du conteneur MySQL avec un mot de passe root et l’exposition du port MySQL.
+
 
 Commande utilisée :
 
@@ -51,6 +114,8 @@ $projectDir = "$env:USERPROFILE\Downloads\INF1099"
 New-Item -ItemType Directory -Force -Path $projectDir
 Set-Location $projectDir
 pwd
+=======
+## Étape 4 – Création de la base de données Sakila
 
 
 ![Screenshot 2](images/2.png)
@@ -92,8 +157,9 @@ docker ps
 
 Commande :
 
-
 docker exec -it INF1099-mysql mysql -u root -prootpass -e "CREATE DATABASE sakila;"
+=======
+## Étape 5 – Création de l’utilisateur etudiants
 
 
 Vérification :
@@ -114,6 +180,8 @@ Commandes :
 CREATE USER 'etudiants'@'%' IDENTIFIED BY 'etudiants_1';
 GRANT ALL PRIVILEGES ON sakila.* TO 'etudiants'@'%';
 FLUSH PRIVILEGES;
+=======
+## Étape 6 – Importation du schéma Sakila
 
 
 ![Screenshot 6](images/6.png)
@@ -121,6 +189,16 @@ FLUSH PRIVILEGES;
 ---
 
 # Étape 7 – Vérification des fichiers Sakila
+=======
+
+
+## Étape 7 – Importation des données Sakila
+
+
+
+Importation des données Sakila à partir du fichier sakila-data.sql.
+
+
 
 Commande utilisée :
 
@@ -143,6 +221,8 @@ Commande :
 
 
 Get-Content "$projectDir\sakila-db\sakila-schema.sql" | docker exec -i INF1099-mysql mysql -u etudiants -petudiants_1 sakila
+=======
+## Étape 8 – Vérification de l’importation
 
 
 ![Screenshot 8](images/8.png)
