@@ -1,6 +1,6 @@
 # TP INF1099 — MySQL Sakila avec Podman sur Windows
-# Nom : jesmina Dos-Reis
-# Matricule : 300150303
+# 👩‍🎓Nom : jesmina Dos-Reis
+# 👤Matricule : 300150303
 ## 📋 Description
 Mise en place d'un environnement MySQL avec la base de données Sakila, en utilisant Podman comme moteur de conteneurs sur Windows.
 
