@@ -36,4 +36,4 @@ flowchart TD
 
 # References
 
-<image src=images/redis-cache.png width='70%' height='70%' > </image>
+<image src=images/redis-cache.gif width='70%' height='70%' > </image>
