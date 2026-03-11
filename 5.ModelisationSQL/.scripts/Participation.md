@@ -1,4 +1,4 @@
-# Participation au 11-03-2026 15:42
+# Participation au 11-03-2026 11:49
 
 | Table des matières            | Description                                             |
 |-------------------------------|---------------------------------------------------------|
@@ -43,4 +43,4 @@
 | 24 | [300153476](../300153476/README.md) :point_right: [dialloramatoulayebah](https://github.com/dialloramatoulayebah) <image src='https://avatars0.githubusercontent.com/u/129418622?s=460&v=4' width=20 height=20></image> | :x: | :x: |
 | 25 | [300153747](../300153747/README.md) :point_right: [madjou15](https://github.com/madjou15) <image src='https://avatars0.githubusercontent.com/u/211754108?s=460&v=4' width=20 height=20></image> | :x: | :x: |
 | 26 | [300154718](../300154718/README.md) :point_right: [stephanetidjet](https://github.com/stephanetidjet) <image src='https://avatars0.githubusercontent.com/u/243453409?s=460&v=4' width=20 height=20></image> | :x: | :x: |
-| :abacus: | $\frac{6}{27}$ = 22% | $\displaystyle\sum_{i=1}^{27} s_i$ = 6 |
+| :abacus: | \$\\frac{6}{27}\$ = 22.22% | \$\displaystyle\sum_{i=1}^{27} s_i\$ = 6 |

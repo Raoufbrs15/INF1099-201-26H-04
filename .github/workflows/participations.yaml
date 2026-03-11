@@ -67,11 +67,8 @@ jobs:
           ## 
           echo "Evaluating chapter 5.ModelisationSQL Participation"
           cd 5.ModelisationSQL
-          bash .scripts/run.sh
+          pwsh .scripts/run.ps1
           cd ..
-          ##
-          ## Evalaating PowerShell
-          ## pwsh --version
 
       - name: Commit files
         run: |
