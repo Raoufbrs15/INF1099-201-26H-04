@@ -1,43 +1,107 @@
-> **Cours** : INF1099 - Administration des bases de données  
-> **Section** : 201-26H-04  
-> **Date** : 2026-03-11  
-> **Collège** : Collège Boréal
+Laboratoire BATCH : Chargement PostgreSQL avec Docker et PowerShell
+📚 Cours
 
----
+INF1099 - Administration des bases de données
+Section : 201-26H-04
+Collège : Collège Boréal
+Date : 2026-03-11
 
-## 📋 Description
+📝 Objectifs
 
-Ce laboratoire démontre l'automatisation du chargement de scripts SQL dans PostgreSQL à l'aide de PowerShell et Docker.
+À la fin de ce laboratoire, l’étudiant sera capable de :
 
-## 🗂️ Fichiers présents
+Comprendre les types de scripts SQL (DDL, DML, DCL, DQL)
 
-| Fichier | Type | Description |
-|---------|------|-------------|
-| `DDL.sql` | SQL | Création des tables (étudiants, cours, inscriptions) |
-| `DML.sql` | SQL | Insertion des données de test |
-| `DCL.sql` | SQL | Gestion des permissions (rôle lecteur_ecole) |
-| `DQL.sql` | SQL | Requêtes de vérification et statistiques |
-| `load-db.ps1` | PowerShell | Script d'automatisation avec logging |
+Utiliser Docker pour exécuter PostgreSQL
 
-## 🚀 Utilisation
+Écrire un script PowerShell pour automatiser le chargement de scripts SQL
 
-```powershell
-# Exécuter le script d'automatisation
+Charger plusieurs scripts SQL automatiquement
+
+🗂️ Structure du projet
+🆔/
+├── DDL.sql       # Création des tables (étudiants, cours, inscriptions)
+├── DML.sql       # Insertion des données de test
+├── DCL.sql       # Gestion des permissions
+├── DQL.sql       # Requêtes de vérification et statistiques
+├── load-db.ps1   # Script d'automatisation PowerShell
+└── images/       # Captures d'écran du laboratoire
+
+💡 Ajout des captures : chaque étape détaillée ci-dessous indique le nom suggéré du fichier image que tu peux mettre dans le dossier images.
+
+🧪 Commandes détaillées
+1️⃣ Structure du dossier
+cd C:\Users\300150295\INF1099-201-26H-04\6.BATCH\300150295
+Get-ChildItem
+
+Titre capture : structure-dossier.png
+
+2️⃣ Démarrage Docker PostgreSQL
+docker run -d `
+  --name postgres-lab `
+  -e POSTGRES_PASSWORD=postgres `
+  -e POSTGRES_DB=ecole `
+  -p 5432:5432 `
+  postgres:latest
+
+Titre capture : docker-run.png
+
+3️⃣ Vérification du conteneur
+docker ps
+
+Titre capture : docker-ps.png
+
+4️⃣ Exécution du script PowerShell
 .\load-db.ps1
 
-# Avec paramètres personnalisés
-.\load-db.ps1 -ContainerName "postgres-lab" -Database "ecole"
-📊 Ordre d'exécution
-plain
-Copy
-1. DDL.sql → Création de la structure
-2. DML.sql → Insertion des données  
-3. DCL.sql → Configuration des accès
-4. DQL.sql → Vérification des données
-✅ Résultat
-✅ Conteneur PostgreSQL démarré avec Docker
-✅ Base de données ecole créée
-✅ Tables peuplées avec données de test
-✅ Utilisateur lecteur_ecole avec droits limités
-✅ Logs d'exécution dans execution.log
-Réalisé dans le cadre du cours INF1099 - Collège Boréal
+Titre capture : execution-script.png
+
+5️⃣ Vérification des logs d’exécution
+Get-Content execution.log
+
+Titre capture : logs-execution.png
+
+6️⃣ Vérification des données SQL
+docker exec -it postgres-lab psql -U postgres -d ecole -c "SELECT * FROM etudiants;"
+
+Titre capture : verification-sql.png
+
+📁 Dossier pour les captures
+
+Créer un dossier pour stocker les images :
+
+mkdir C:\Users\300150295\INF1099-201-26H-04\6.BATCH\300150295\images
+
+Toutes les captures doivent être nommées selon les titres indiqués ci-dessus et sauvegardées dans ce dossier.
+
+🔄 Ordre d’exécution des scripts SQL
+
+DDL.sql → Création de la structure
+
+DML.sql → Insertion des données
+
+DCL.sql → Gestion des accès
+
+DQL.sql → Vérification des données
+
+✅ Résultats attendus
+
+Conteneur PostgreSQL démarré avec Docker
+
+Base de données ecole créée
+
+Tables peuplées avec des données de test
+
+Utilisateur lecteur_ecole avec droits limités
+
+Logs d’exécution générés dans execution.log
+
+🚀 Bonus (optionnel)
+
+Accepter le nom du conteneur en paramètre :
+
+.\load-db.ps1 -ContainerName "postgres-lab"
+
+Afficher le temps d’exécution
+
+Générer un fichier log execution.log automatiquement
