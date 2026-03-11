@@ -39,7 +39,7 @@ foreach ($entry in $STUDENTS) {
     $GitHubID  = $parts[1]
     $AvatarID  = $parts[2]
 
-    $URL = "[{0}](https://github.com/{0}) <image src='https://avatars0.githubusercontent.com/u/{1}?s=460&v=4' width=20 height=20></image>" -f $GitHubID, $AvatarID
+    $URL = "[<image src='https://avatars0.githubusercontent.com/u/{1}?s=460&v=4' width=20 height=20></image>](https://github.com/{0})" -f $GitHubID, $AvatarID
     $FILE = "$StudentID/README.md"
     $FOLDER = "$StudentID/images"
 
