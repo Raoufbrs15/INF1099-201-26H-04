@@ -133,6 +133,15 @@ Elles montrent :
 * l’exécution du script PowerShell
 * la vérification des données dans PostgreSQL
 
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/6.BATCH/300151841/images/1_structure_labbatch.png.png)
+
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/6.BATCH/300151841/images/2_postgres_actif.png.png)
+
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/6.BATCH/300151841/images/03_postgres_container_running.png.png)
+
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/6.BATCH/300151841/images/Ex%C3%A9cution%20du%20script.png)
+
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/6.BATCH/300151841/images/V%C3%A9rification%20dans%20PostgreSQL.png)
 ---
 
 # ✅ Résultat
@@ -151,3 +160,4 @@ Cette méthode permet de gagner du temps et d’éviter les erreurs lors de l’
 * PostgreSQL
 * PowerShell
 * SQL
+
