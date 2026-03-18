@@ -26,3 +26,17 @@ Nous avons créé deux rôles distincts pour simuler une gestion scolaire réell
 ```sql
 CREATE USER prof_test WITH PASSWORD 'prof123';
 CREATE USER etudiant_test WITH PASSWORD 'etudiant123';
+```
+## 📊 Preuves de Fonctionnement
+
+### ✅ TP: DCL REUSSI
+<p align="center">
+  <img src="./images/Travail_reussi.png" width="600" title="DCL">
+  <br><em>DCL réussie pratique</em>
+</p>
+
+### Projet eduhome
+<p align="center">
+  <img src="./images/resultat_grant.png" width="600" title="DCL">
+  <br><em>DCL réussie pratique</em>
+</p>
