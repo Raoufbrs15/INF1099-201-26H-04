@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Setup tools
-        run: |
-          apt-get update
-          apt-get install -y jq
+#      - name: Setup tools
+#        run: |
+#          apt-get update
+#          apt-get install -y jq
 
       - name: Use jq
         run: echo '{"name":"GitHub"}' | jq '.name'
