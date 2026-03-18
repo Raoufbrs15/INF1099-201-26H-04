@@ -5,7 +5,9 @@ on: [push]
 jobs:
   presence:
     name: presence de fichiers pour la participation
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/powershell
 
     steps:
       - uses: actions/checkout@v1
