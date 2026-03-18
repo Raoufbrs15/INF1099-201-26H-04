@@ -54,8 +54,8 @@ Write-Output ""
 Write-Output "## :a: Présence"
 Write-Output ""
 
-Write-Output "|:hash:| Boréal :id: | README.md | images | DDL.sql | DML.sql | DQL.sql | DCL.sql |"
-Write-Output "|------|-------------|-----------|--------|---------|---------|---------|---------|"
+Write-Output "|:hash:| Boréal :id: | README.md | images | DDL.sql | DML.sql | DQL.sql | DCL.sql | :mouse_trap: DB"
+Write-Output "|------|-------------|-----------|--------|---------|---------|---------|---------|----|"
 
 # Initialize counters
 $i = 0
