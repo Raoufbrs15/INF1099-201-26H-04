@@ -5,26 +5,32 @@ function Test-LoadDB($scriptPath, $StudentID) {
 
     $ErrorActionPreference = "Stop"
 
-    $existing = docker ps -a --filter "name=postgres-lab" --format "{{.Names}}"
+    # 🔥 Reset complet du conteneur
+    docker rm -f postgres-lab 2>$null | Out-Null
 
-    if (-not ($existing -contains "postgres-lab")) {
-        docker container run -d -q `
-            --name postgres-lab `
-            -e POSTGRES_PASSWORD=postgres `
-            -e POSTGRES_DB=ecole `
-            -p 5432:5432 `
-            postgres | Out-Null
-    }
+    docker run -d -q `
+        --name postgres-lab `
+        -e POSTGRES_PASSWORD=postgres `
+        -e POSTGRES_DB=ecole `
+        postgres | Out-Null
 
-    # Attendre que Postgres soit prêt
-    for ($i=0; $i -lt 10; $i++) {
-        try {
-            docker exec postgres-lab pg_isready | Out-Null
+    # 🔥 Attendre readiness
+    $ready = $false
+    for ($i=0; $i -lt 15; $i++) {
+        $status = docker exec postgres-lab pg_isready 2>$null
+        if ($status -match "accepting connections") {
+            $ready = $true
             break
-        } catch {
-            Start-Sleep -Seconds 1
         }
+        Start-Sleep -Seconds 1
     }
+
+    if (-not $ready) {
+        return ":x:"
+    }
+
+    # 🔥 Sécurité : créer DB si nécessaire
+    docker exec postgres-lab psql -U postgres -c "CREATE DATABASE ecole;" 2>$null
 
     try {
         Push-Location $StudentID
@@ -39,8 +45,7 @@ function Test-LoadDB($scriptPath, $StudentID) {
         return ":x:"
     }
     finally {
-        docker container stop postgres-lab | Out-Null
-        docker container rm postgres-lab | Out-Null
+        docker rm -f postgres-lab 2>$null | Out-Null
     }
 }
 

@@ -1,22 +1,22 @@
-[2026-03-18 22:22:19] [INFO] Conteneur: postgres-lab | Base: ecole | Utilisateur: postgres
-[2026-03-18 22:22:19] [INFO] V�rification du conteneur postgres-lab...
-[2026-03-18 22:22:19] [INFO] Conteneur actif detecte
-[2026-03-18 22:22:19] [INFO] Debut du chargement des scripts...
-[2026-03-18 22:22:19] [INFO] Traitement de DDL.sql...
-[2026-03-18 22:22:19] [ERROR] ERREUR SQL dans DDL.sql : psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory 	Is the server running locally and accepting connections on that socket?
-[2026-03-18 22:22:19] [INFO] Traitement de DML.sql...
-[2026-03-18 22:22:19] [ERROR] ERREUR SQL dans DML.sql : psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory 	Is the server running locally and accepting connections on that socket?
-[2026-03-18 22:22:19] [INFO] Traitement de DCL.sql...
-[2026-03-18 22:22:19] [ERROR] ERREUR SQL dans DCL.sql : psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "ecole" does not exist
-[2026-03-18 22:22:19] [INFO] Traitement de DQL.sql...
-[2026-03-18 22:22:19] [ERROR] ERREUR SQL dans DQL.sql : psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "ecole" does not exist
-[2026-03-18 22:22:19] [INFO] === RAPPORT FINAL ===
-[2026-03-18 22:22:19] [INFO] Scripts reussis: 0
-[2026-03-18 22:22:19] [INFO] Scripts en erreur: 4
-[2026-03-18 22:22:19] [INFO] Temps d'execution: 0.4747375 secondes
+[2026-03-18 19:00:45] [INFO] Conteneur: postgres-lab | Base: ecole | Utilisateur: postgres
+[2026-03-18 19:00:45] [INFO] V�rification du conteneur postgres-lab...
+[2026-03-18 19:00:46] [INFO] Conteneur actif detecte
+[2026-03-18 19:00:46] [INFO] Debut du chargement des scripts...
+[2026-03-18 19:00:46] [INFO] Traitement de DDL.sql...
+[2026-03-18 19:00:46] [INFO] SUCCES: DDL.sql execute
+[2026-03-18 19:00:46] [INFO] Traitement de DML.sql...
+[2026-03-18 19:00:46] [INFO] SUCCES: DML.sql execute
+[2026-03-18 19:00:46] [INFO] Traitement de DCL.sql...
+[2026-03-18 19:00:46] [INFO] SUCCES: DCL.sql execute
+[2026-03-18 19:00:46] [INFO] Traitement de DQL.sql...
+[2026-03-18 19:00:46] [INFO] SUCCES: DQL.sql execute
+[2026-03-18 19:00:46] [INFO] === RAPPORT FINAL ===
+[2026-03-18 19:00:46] [INFO] Scripts reussis: 4
+[2026-03-18 19:00:46] [INFO] Scripts en erreur: 0
+[2026-03-18 19:00:46] [INFO] Temps d'execution: 0.777824 secondes
 
 Resume:
-- Succes: 0
-- Erreurs: 4
-- Duree: 0.4747375s
+- Succes: 4
+- Erreurs: 0
+- Duree: 0.777824s
 - Log: execution.log
