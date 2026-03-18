@@ -6,8 +6,9 @@ jobs:
   presence:
     name: presence de fichiers pour la participation
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/powershell
+    # If container isolation is needed
+    # container:
+    #   image: mcr.microsoft.com/powershell
 
     steps:
       - uses: actions/checkout@v1
