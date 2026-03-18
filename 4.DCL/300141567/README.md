@@ -137,7 +137,6 @@ CREATE ROLE lecture;
 GRANT SELECT ON tp_dcl.etudiants TO lecture;
 GRANT lecture TO etudiant;
 ```
-
 ---
 
 **✔️ TP réalisé avec succès**
