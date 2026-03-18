@@ -29,12 +29,14 @@ CREATE USER etudiant_test WITH PASSWORD 'etudiant123';
 ```
 ## 📊 Preuves de Fonctionnement
 
-### ✅ Test 1 : Succès du Professeur
-Le professeur est autorisé à insérer des données dans la table des notes.
-![Capture Succès Prof](./images/prof_success.png)
-*Légende : Insertion d'une note de 95 réussie par prof_test*
+### ✅ TP: DCL REUSSI
+<p align="center">
+  <img src="./images/Travail_reussi.png" width="600" title="DCL">
+  <br><em>DCL réussie pratique</em>
+</p>
 
-### ❌ Test 2 : Blocage de l'Étudiant (Sécurité)
-L'étudiant tente de modifier une note, mais PostgreSQL bloque l'action grâce au DCL.
-![Capture Erreur Étudiant](./images/etudiant_error.png)
-*Légende : Message d'erreur "Permission denied for table note"*
+### Projet eduhome
+<p align="center">
+  <img src="./images/Travail_reussi.png" width="600" title="DCL">
+  <br><em>DCL réussie pratique</em>
+</p>
