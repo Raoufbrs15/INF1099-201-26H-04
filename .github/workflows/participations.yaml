@@ -69,6 +69,13 @@ jobs:
           cd 5.ModelisationSQL
           pwsh .scripts/run.ps1
           cd ..
+          ##
+          ## Evaluating chapter 6.BATCH
+          ## 
+          echo "Evaluating chapter 6.BATCH Participation"
+          cd 6.BATCH
+          pwsh .scripts/run.ps1
+          cd ..
 
       - name: Commit files
         run: |
