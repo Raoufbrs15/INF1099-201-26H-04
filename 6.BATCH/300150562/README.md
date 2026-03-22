@@ -69,6 +69,8 @@ Un conteneur PostgreSQL est utilisé :
 
 
 Le script `load-db.ps1` automatise :
+<img width="939" height="684" alt="image" src="https://github.com/user-attachments/assets/67c7ed52-50eb-44dc-b640-6f5dacd71724" />
+
 
 
 
