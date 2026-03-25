@@ -161,7 +161,7 @@ Cette démo montre :
 
 ---
 
-# 💡 Dollar-quoting `$$ … $$` en PostgreSQL
+### 💡 Dollar-quoting `$$ … $$` en PostgreSQL
 
 * **Qu’est-ce que c’est ?**
   Délimiteur pour écrire le code PL/pgSQL d’une fonction ou procédure. Tout entre `$$ … $$` est pris comme texte brut.
