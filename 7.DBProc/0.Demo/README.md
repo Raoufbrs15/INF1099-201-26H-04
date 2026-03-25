@@ -159,4 +159,39 @@ Cette démo montre :
 4. Ajouter un **trigger** pour log automatique
 5. Tester et afficher résultats avec `SELECT` et `CALL`
 
+---
+
+# 💡 Dollar-quoting `$$ … $$` en PostgreSQL
+
+* **Qu’est-ce que c’est ?**
+  Délimiteur pour écrire le code PL/pgSQL d’une fonction ou procédure. Tout entre `$$ … $$` est pris comme texte brut.
+
+* **Pourquoi l’utiliser ?**
+
+  * Permet d’écrire des blocs multi-lignes facilement
+  * Pas besoin d’échapper les `'` ou `"`
+  * Améliore la lisibilité
+
+* **Exemple : fonction simple**
+
+```sql
+CREATE OR REPLACE FUNCTION addition(a INT, b INT)
+RETURNS INT
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN a + b;
+END;
+$$;
+```
+
+* **Option : tag personnalisé**
+
+```sql
+AS $fonction$
+-- code PL/pgSQL ici
+$fonction$;
+```
+
+* **Analogie** : comme un **here document** en Bash (`<<EOF … EOF`) → tout ce qui est entre les délimiteurs est pris tel quel.
 
