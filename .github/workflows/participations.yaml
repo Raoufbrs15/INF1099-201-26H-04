@@ -47,7 +47,7 @@ jobs:
           ## 
           echo "Evaluating chapter 1.Domaines Participation"
           cd 1.Domaines
-          bash .scripts/run.sh
+          pwsh .scripts/run.ps1
           cd ..
           ##
           ## Evaluating chapter 2.MySQL
