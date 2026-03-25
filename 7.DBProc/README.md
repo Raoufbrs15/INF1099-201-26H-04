@@ -23,6 +23,92 @@
 
 💡 En résumé : **Oracle a inventé et popularisé le concept de SQL procédural avec PL/SQL**, et les autres SGBD ont suivi avec leurs propres variantes.
 
+---
+
+Ah, tu touches à un point important. Le **gros problème d’utiliser massivement les langages procéduraux (PL) dans une base de données**, c’est qu’ils peuvent **nuire à la portabilité et à la maintenance**. Voici les détails :
+
+---
+
+## ⚠️ Limites et risques des PL dans une base
+
+1. **Verrouillage sur un SGBD spécifique**
+
+   * PL/SQL → Oracle
+   * PL/pgSQL → PostgreSQL
+   * T-SQL → SQL Server
+   * Les procédures et fonctions écrites pour un SGBD **ne fonctionnent pas directement sur un autre**
+     → Rend la base **difficile à migrer**.
+
+2. **Complexité et maintenance**
+
+   * Si tu mets trop de logique métier dans la base, ça devient **compliqué à maintenir**.
+   * Les modifications nécessitent souvent des **redéploiements complexes**.
+
+3. **Performance mal gérée**
+
+   * Les PL peuvent être rapides pour certaines tâches, mais **si mal utilisées** (boucles lourdes, curseurs mal optimisés), elles **peuvent ralentir la base**.
+
+4. **Testabilité réduite**
+
+   * La logique métier dans la base est **moins facile à tester** qu’une application externe avec un framework moderne.
+
+---
+
+### ✅ En résumé :
+
+> Le gros problème : **dépendance forte au SGBD et difficulté de maintenance**, surtout dans des environnements multi-SGBD ou évolutifs.
+
+💡 Bonne pratique : **mettre dans les PL ce qui doit vraiment rester proche des données**, mais **laisser la logique applicative dans le code de l’application**.
+
+---
+
+## 1️⃣ Pourquoi les PL sont populaires
+
+1. **Performance** :
+
+   * Exécuter des calculs ou validations directement dans la base évite de transférer de gros volumes de données vers l’application.
+
+2. **Centralisation de la logique métier** :
+
+   * Les règles, validations, calculs, et traitements sont stockés **au même endroit** que les données, ce qui facilite maintenance et cohérence.
+
+3. **Automatisation avec triggers** :
+
+   * Déclencher des actions automatiquement sur `INSERT`, `UPDATE`, `DELETE` sans intervention côté application.
+
+4. **Sécurité et contrôle** :
+
+   * Limite l’accès direct aux tables sensibles via des procédures contrôlées.
+
+---
+
+## 2️⃣ Exemples de PL très utilisés
+
+| SGBD            | Langage PL | Usage fréquent                                                         |
+| --------------- | ---------- | ---------------------------------------------------------------------- |
+| Oracle          | PL/SQL     | Procédures stockées, triggers, packages pour ERP et systèmes bancaires |
+| PostgreSQL      | PL/pgSQL   | Logiciel métier, ETL, validations complexes, triggers                  |
+| SQL Server      | T-SQL      | Procédures stockées, fonctions définies par l’utilisateur, reporting   |
+| MySQL / MariaDB | SQL/PSM    | Procédures stockées simples, triggers pour apps web                    |
+
+---
+
+## 3️⃣ Cas typiques d’utilisation
+
+* Calculs complexes avant insertion (ex : facturation, TVA, commissions)
+* Validation automatique de données (ex : âge, email, cohérence entre tables)
+* Génération de logs ou historiques via triggers
+* Systèmes transactionnels (banque, ERP, gestion d’inventaire)
+
+---
+
+💡 **En résumé :**
+Les PL **sont très utilisés dans le monde professionnel**, surtout dans des systèmes critiques où :
+
+* La logique métier doit rester proche de la base
+* Les performances sont importantes
+* La sécurité et la cohérence des données sont cruciales
+
 
 ## 1️⃣ Objectifs pédagogiques
 
