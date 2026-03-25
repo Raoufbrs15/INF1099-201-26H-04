@@ -5,7 +5,7 @@
 
 ---
 
-# 🚀 Étapes du laboratoire
+#  Étapes du laboratoire
 
 ## Étape 0 : Connexion au container Docker
 
@@ -37,7 +37,7 @@ CREATE SCHEMA tp_dcl;
 ```
 
 <details>
-<summary>📋 Output attendu</summary>
+<summary> Output attendu</summary>
 
 ```
 CREATE DATABASE
@@ -241,7 +241,7 @@ Vérifier que le droit a bien été retiré :
 
 ```sql
 \c - etudiant
-SELECT * FROM tp_dcl.etudiants;  -- ❌ Doit maintenant échouer
+SELECT * FROM tp_dcl.etudiants;  --  Doit maintenant échouer
 ```
 
 <details>
@@ -275,7 +275,7 @@ DROP USER etudiant;
 DROP USER professeur;
 ```
 
-> ⚠️ PostgreSQL **ne permet pas** de supprimer un utilisateur si celui-ci possède encore des privilèges (tables, schémas). Ici, tout reste dans le schéma `tp_dcl`.
+>  PostgreSQL **ne permet pas** de supprimer un utilisateur si celui-ci possède encore des privilèges (tables, schémas). Ici, tout reste dans le schéma `tp_dcl`.
 
 <details>
 <summary>📋 Output attendu</summary>
@@ -302,7 +302,7 @@ DETAIL:  privileges for database cours
 
 ---
 
-## 🔑 Rappel : Hiérarchie des droits PostgreSQL
+##  Rappel : Hiérarchie des droits PostgreSQL
 
 ```
 Cluster PostgreSQL
