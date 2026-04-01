@@ -37,24 +37,28 @@ L’objectif est de manipuler la logique métier directement dans la base de don
 docker run -d --name tp_postgres -e POSTGRES_USER=etudiant -e POSTGRES_PASSWORD=etudiant -e POSTGRES_DB=tpdb -p 5432:5432 -v ${PWD}/init:/docker-entrypoint-initdb.d postgres:15
 ```
 
-🗄️ Base de données
+###🗄️ Base de données
+
 etudiants → informations étudiants
 cours → liste des cours
 inscriptions → relation étudiants ↔ cours
 logs → historique des actions
-🧠 Fonctionnalités
-🔹 Procédure ajouter_etudiant
+###🧠 Fonctionnalités
+
+###🔹 Procédure ajouter_etudiant
 Vérifie âge ≥ 18
 Vérifie email valide
 Ajoute étudiant + log
 Gestion des erreurs
-🔹 Fonction nombre_etudiants_par_age
+
+##🔹 Fonction nombre_etudiants_par_age
 Retourne le nombre d’étudiants dans un intervalle
-🔹 Procédure inscrire_etudiant_cours
+##🔹 Procédure inscrire_etudiant_cours
 Vérifie existence étudiant/cours
 Vérifie doublon
 Inscrit + log
-🔹 Triggers
+
+##🔹 Triggers
 Validation automatique avant insertion
 Logging automatique des actions
 Tests
