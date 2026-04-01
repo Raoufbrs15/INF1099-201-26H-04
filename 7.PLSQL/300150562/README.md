@@ -74,8 +74,7 @@ SELECT * FROM logs;
 
 
 
-<img width="975" height="468" alt="image" src="https://github.com/user-attachments/assets/87e9aaa1-c6b8-494f-b379-73a37dc218ba" />
-
+![alt text](images/image.png)
 
 
 
