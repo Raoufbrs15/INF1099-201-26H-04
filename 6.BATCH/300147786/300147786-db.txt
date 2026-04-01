@@ -9,9 +9,9 @@ DROP TABLE
 DROP TABLE
 DROP TABLE
 DROP TABLE
+DROP TABLE
 NOTICE:  table "profil" does not exist, skipping
 NOTICE:  table "utilisateur" does not exist, skipping
-DROP TABLE
 CREATE TABLE
 CREATE TABLE
 CREATE TABLE
@@ -50,7 +50,7 @@ Execution de DQL.sql
 
              contenu              |         date_envoi         | prenom  
 ----------------------------------+----------------------------+---------
- Salut, ton annonce m’intéresse ! | 2026-04-01 17:52:04.574959 | Mamadou
+ Salut, ton annonce m’intéresse ! | 2026-04-01 17:53:00.254495 | Mamadou
 (1 row)
 
  id_match | date_match |  statut  | id_utilisateur_1 | id_utilisateur_2 
