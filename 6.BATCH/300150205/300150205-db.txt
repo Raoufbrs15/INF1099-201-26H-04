@@ -35,9 +35,9 @@ GRANT
 GRANT
 GRANT
 GRANT
-REVOKE
 ERROR:  role "technicien_user" cannot be dropped because some objects depend on it
 DETAIL:  privileges for schema boutique
+REVOKE
 ERROR:  role "gestionnaire_user" cannot be dropped because some objects depend on it
 DETAIL:  privileges for schema boutique
 privileges for sequence boutique.marque_id_marque_seq
