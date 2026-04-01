@@ -6,7 +6,7 @@ conn = psycopg2.connect(
     user="postgres",
     password="postgres",
     host="localhost",
-    port=5432
+    port=5433  # <-- ici, le port correct de ton Docker
 )
 
 cur = conn.cursor()
