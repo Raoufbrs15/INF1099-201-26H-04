@@ -43,4 +43,4 @@
 | 24 | [300153476](../300153476/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/129418622?s=460&v=4' width=20 height=20></image>](https://github.com/dialloramatoulayebah) | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: |
 | 25 | [300153747](../300153747/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/211754108?s=460&v=4' width=20 height=20></image>](https://github.com/madjou15) | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: |
 | 26 | [300154718](../300154718/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/243453409?s=460&v=4' width=20 height=20></image>](https://github.com/stephanetidjet) | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: |
-| :abacus: | \$\frac{0}{27}\$ = 0% | \$\displaystyle\sum_{i=1}^{27} s_i\$ = 0 |
+| :abacus: | \$\frac{2}{27}\$ = 7.41% | \$\displaystyle\sum_{i=1}^{27} s_i\$ = 2 |

@@ -68,7 +68,7 @@ function Test-AllRequiredFilesPresent {
     )
 
     return (
-        $Checks.README    -eq ":heavy_check_mark:" -and
+        $Checks.README    -eq ":1st_place_medal:" -or ":2nd_place_medal:" -and
         $Checks.Images    -eq ":heavy_check_mark:" -and
         $Checks.MERMAID   -eq ":heavy_check_mark:" -and
         $Checks.FILE_1FN  -eq ":heavy_check_mark:" -and
