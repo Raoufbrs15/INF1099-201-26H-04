@@ -1,11 +1,18 @@
--- Cr�ation d'un utilisateur lecture seule
-DROP ROLE IF EXISTS lecteur_ecole;
-CREATE ROLE lecteur_ecole WITH LOGIN PASSWORD 'lecteur123';
+﻿-- ============================================================
+--  DCL.sql — Gestion des droits BetFormula
+--  TP Modélisation SQL | INF1099 | Étudiant : 300150295
+-- ============================================================
 
--- Permissions
-GRANT CONNECT ON DATABASE ecole TO lecteur_ecole;
-GRANT USAGE ON SCHEMA public TO lecteur_ecole;
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO lecteur_ecole;
+-- Créer les rôles
+CREATE ROLE parieur;
+CREATE ROLE administrateur;
 
--- Pour les futures tables
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO lecteur_ecole;
+-- Parieur : lecture seulement
+GRANT SELECT ON Utilisateur, Course, Pilote, Pari, Evenement, Circuit TO parieur;
+
+-- Administrateur : tous les droits
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO administrateur;
+
+-- Révoquer droits sensibles au parieur
+REVOKE DELETE ON Pari FROM parieur;
+REVOKE UPDATE ON Pari FROM parieur;
