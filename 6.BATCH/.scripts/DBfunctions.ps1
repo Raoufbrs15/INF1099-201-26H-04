@@ -74,7 +74,7 @@ function Test-LoadDB {
                 $hasError = $content | Where-Object { $_ -match '(?i)error|Error|ERROR|exception|Exception' }
                 
                 if ($hasError) {
-                    Write-Host "Errors found in $StudentID-db.txt"
+                    # Write-Host "Errors found in $StudentID-db.txt"
                     return ":boom:"
                 }
             }
