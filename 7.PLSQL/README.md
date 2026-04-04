@@ -391,7 +391,7 @@ Get-Content tests/test.sql | docker exec -i tp_postgres psql -U etudiant -d tpdb
 - [ ] 🐧 *nix
 
 ```bash
-docker container exec -i tp_postgres psql -U etudiant -d tpdb < /tests/test.sql
+docker container exec -i tp_postgres psql -U etudiant -d tpdb < tests/test.sql
 ```
 
 > Les étudiants verront directement les résultats des triggers et procédures.
