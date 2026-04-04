@@ -1,4 +1,9 @@
 NOTICE:  ❌ Erreur ajout étudiant Ali : column reference "email" is ambiguous
+<<<<<<< HEAD
+=======
+CALL
+DO
+>>>>>>> b07073d6d5682a9e6425bc17ff4ad3b51e18eea5
 NOTICE:  ❌ Erreur ajout étudiant Bob : Age invalide (<18) pour Bob
 ERROR:  function nombre_etudiants() does not exist
 CALL
