@@ -382,13 +382,13 @@ docker container exec -it tp_postgres psql -U etudiant -d tpdb
 ## 6️⃣ Automatiser les tests
 
 
-🪟 Windows
+- [ ] 🪟 Windows
 
 ```powershell
 Get-Content tests/test.sql | docker exec -i tp_postgres psql -U etudiant -d tpdb
 ```
 
-🐧 *nix
+- [ ] 🐧 *nix
 
 ```bash
 docker container exec -i tp_postgres psql -U etudiant -d tpdb < /tests/test.sql
