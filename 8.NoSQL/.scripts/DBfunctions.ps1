@@ -71,6 +71,7 @@ function Test-LoadDB {
 
         Initialize-PostgresDatabase
 
+        pip install -r requirements.txt 2>$null | Out-Null
         python app.py *> "$StudentID-db.txt"
 
         # Check for errors in the generated file
