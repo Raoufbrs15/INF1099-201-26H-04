@@ -78,6 +78,6 @@ function Write-StudentRow {
         [string]$ReadmePath
     )
 
-    Write-Output "| $Index | [$StudentID](../$ReadmePath) :point_right: $GitHubLink | $($Checks.README) | $($Checks.Images) | $($Checks.DDL) | $($Checks.DML) | $($Checks.PROG) | $($Checks.TEST) | $DbStatus | $LogLink |"
+    Write-Output "| $Index | [$StudentID](../$ReadmePath) :point_right: $GitHubLink | $($Checks.README) | $($Checks.Images) | $($Checks.DDL) | $($Checks.DML) | $($Checks.PROG) | $DbStatus | $LogLink |"
 }
 
