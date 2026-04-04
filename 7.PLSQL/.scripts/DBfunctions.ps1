@@ -14,29 +14,17 @@ $ErrorActionPreference = "Stop"
 # $ErrorActionPreference = "Ignore"
 
 function Start-PostgresLab {
-    param(
-        [string]$StudentID
-    )
 
-    Push-Location $StudentID
-    $path=$PWD.Path
+    docker rm -f tp_postgres 2>$null | Out-Null
 
-    try {
-
-        docker rm -f tp_postgres 2>$null | Out-Null
-
-        docker run -d `
-            --name tp_postgres `
-            -e POSTGRES_USER=etudiant `
-            -e POSTGRES_PASSWORD=etudiant `
-            -e POSTGRES_DB=tpdb `
-            -p 5432:5432 `
-            -v $path/init:/docker-entrypoint-initdb.d `
-            postgres:15 2>$null | Out-Null
-    }
-    finally {
-        Pop-Location
-    }
+    docker run -d `
+        --name tp_postgres `
+        -e POSTGRES_USER=etudiant `
+        -e POSTGRES_PASSWORD=etudiant `
+        -e POSTGRES_DB=tpdb `
+        -p 5432:5432 `
+        -v ${PWD}/init:/docker-entrypoint-initdb.d `
+        postgres:15 2>$null | Out-Null
 
 }
 
@@ -71,7 +59,9 @@ function Test-LoadDB {
         [string]$StudentID
     )
 
-    Start-PostgresLab $StudentID
+    Push-Location $StudentID
+
+    Start-PostgresLab
 
     try {
         $ready = Wait-PostgresReady
@@ -81,36 +71,28 @@ function Test-LoadDB {
 
         Initialize-PostgresDatabase
 
-        Push-Location $StudentID
+        $sqlContent = Get-Content -Path "tests/test.sql" -Raw
+        docker exec -i tp_postgres psql -U etudiant -d tpdb -c "$sqlContent" *> "$StudentID-db.txt"
 
-        try {
-            $sqlContent = Get-Content -Path "tests/test.sql" -Raw
-#            docker exec -i tp_postgres psql -U etudiant -d tpdb -c "$sqlContent" |
-#                Out-File -FilePath "$StudentID-db.txt" -Encoding UTF8 -ErrorAction SilentlyContinue
-            docker exec -i tp_postgres psql -U etudiant -d tpdb -c "$sqlContent" *> "$StudentID-db.txt"
-
-            # Check for errors in the generated file
-            if (Test-Path "$StudentID-db.txt") {
-                $content = Get-Content "$StudentID-db.txt" -ErrorAction SilentlyContinue
-                $hasError = $content | Where-Object { $_ -match '(?i)error|exception ' }
-                
-                if ($hasError) {
-                    # Write-Host "Errors found in $StudentID-db.txt"
-                    return ":boom:"
-                }
+        # Check for errors in the generated file
+        if (Test-Path "$StudentID-db.txt") {
+            $content = Get-Content "$StudentID-db.txt" -ErrorAction SilentlyContinue
+            $hasError = $content | Where-Object { $_ -match '(?i)error|exception ' }
+            
+            if ($hasError) {
+                # Write-Host "Errors found in $StudentID-db.txt"
+                return ":boom:"
             }
-
-            return ":heavy_check_mark:"
-
         }
-        finally {
-            Pop-Location
-        }
+
+        return ":heavy_check_mark:"
+
     }
     catch {
         return ":x:"
     }
     finally {
         Stop-PostgresLab
+        Pop-Location
     }
 }
