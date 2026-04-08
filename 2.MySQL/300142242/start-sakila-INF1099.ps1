@@ -1,18 +1,24 @@
-# Projet de Gestion Scolaire (Moodle Duplicate) - INF1099
+# Script d'automatisation pour le projet Moodle - INF1099
+$ContainerName = "mysql-moodle"
 
-## Description
-Ce projet consiste en la mise en place d'une infrastructure de base de données pour une plateforme de gestion scolaire. Il utilise des conteneurs Podman pour isoler le serveur MySQL et des scripts PowerShell pour automatiser le déploiement.
+echo "1. Arret et suppression des anciens conteneurs..."
+podman stop $ContainerName 2>$null
+podman rm $ContainerName 2>$null
 
-## Structure du Projet
-* `schema.sql` : Définition des tables (3FN).
-* `data.sql` : Données de test pour peupler la base.
-* `start-sakila-INF1099.ps1` : Script d'automatisation complet.
+echo "2. Lancement du conteneur MySQL..."
+podman run --name $ContainerName -e MYSQL_ROOT_PASSWORD=RootPassword123! [cite_start]-d -p 3306:3306 mysql:latest [cite: 9]
 
-## Preuve de fonctionnement
-Voici le résultat de l'exécution du script d'automatisation, montrant la création des tables et l'insertion des données :
+echo "3. Attente de l'initialisation du serveur (25 secondes)..."
+Start-Sleep -s 25
 
-![Capture d'écran de la base de données](./images/verification_moodle.png)
+echo "4. Creation de la base de données et de l'utilisateur 'etudiants'..."
+podman exec -i $ContainerName mysql -uroot -pRootPassword123! [cite_start]-e "CREATE DATABASE IF NOT EXISTS moodle_db; CREATE USER IF NOT EXISTS 'etudiants'@'%' IDENTIFIED BY 'EtudiantPass456!'; GRANT ALL PRIVILEGES ON moodle_db.* TO 'etudiants'@'%'; FLUSH PRIVILEGES;" [cite: 10, 11]
 
-## Instructions
-Pour lancer le projet, ouvrez PowerShell dans ce dossier et exécutez :
-`.\start-sakila-INF1099.ps1`
+echo "5. Importation du schema..."
+[cite_start]Get-Content schema.sql | podman exec -i $ContainerName mysql -uroot -pRootPassword123! moodle_db [cite: 13, 18]
+
+echo "6. Importation des donnees..."
+[cite_start]Get-Content data.sql | podman exec -i $ContainerName mysql -uroot -pRootPassword123! moodle_db [cite: 14, 18]
+
+echo "7. Verification finale..."
+podman exec -it $ContainerName mysql -uetudiants -pEtudiantPass456! [cite_start]-e "USE moodle_db; SHOW TABLES; SELECT * FROM ETUDIANT;" [cite: 15]
