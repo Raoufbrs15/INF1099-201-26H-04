@@ -26,8 +26,6 @@ foreach ($entry in $STUDENTS) {
     $checks = Get-StudentChecks -Paths $paths
     $url    = Get-GitHubAvatarLink -GitHubID $GitHubID -AvatarID $AvatarID
 
-    $ImagesCount  = ":zero:"
-
     if (Test-Path $paths.README) {
         $ImagesCount  = Get-StudentReport -id $StudentID
     }
