@@ -32,8 +32,8 @@ podman exec -it tp_postgres psql -U etudiant -d tpdb
 ---
 
 ## ✅ Résultats
+<img width="1330" height="377" alt="PLSQL" src="https://github.com/user-attachments/assets/344ece92-5472-4a48-85e1-093266b6bebd" />
 
-**DDL — Création des tables**
 
 **DML — Insertion de 10 étudiants**
 ---
