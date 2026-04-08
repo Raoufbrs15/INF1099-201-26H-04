@@ -1,6 +1,6 @@
 # 🗄️ TP PostgreSQL — Stored Procedures
 ### Fonctions, Procédures Stockées et Triggers
-> **Cours :** INF1099 · **Étudiant :** Massinissa
+> **Cours :** INF1099 · **Étudiant :** Massinissa Mameri
 
 ---
 
