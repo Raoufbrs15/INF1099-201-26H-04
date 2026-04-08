@@ -44,9 +44,11 @@ psql -U postgres
 ```sql
 CREATE DATABASE cours;
 \c cours
+<img width="661" height="99" alt="image" src="https://github.com/user-attachments/assets/f23f5a6d-5cea-4698-920f-c6b12162ffd2" />
 
 CREATE SCHEMA tp_dcl;
 ```
+<img width="431" height="130" alt="image" src="https://github.com/user-attachments/assets/4f4d7779-52ec-4814-91eb-1db10b14f85f" />
 
 ---
 
@@ -59,6 +61,7 @@ CREATE TABLE tp_dcl.etudiants (
     moyenne NUMERIC
 );
 ```
+<img width="453" height="128" alt="image" src="https://github.com/user-attachments/assets/bd9584a0-7823-4bea-9fdb-1846f35c9632" />
 
 ---
 
@@ -68,6 +71,7 @@ CREATE TABLE tp_dcl.etudiants (
 CREATE USER etudiant WITH PASSWORD 'etudiant123';
 CREATE USER professeur WITH PASSWORD 'prof123';
 ```
+<img width="676" height="80" alt="image" src="https://github.com/user-attachments/assets/f10b0593-f38c-437d-b3f1-fbfb1ed77294" />
 
 ---
 
@@ -84,6 +88,7 @@ GRANT CONNECT ON DATABASE cours TO etudiant, professeur;
 ```sql
 GRANT USAGE ON SCHEMA tp_dcl TO etudiant, professeur;
 ```
+<img width="821" height="204" alt="image" src="https://github.com/user-attachments/assets/c376ab4c-7aaf-4aa4-915f-beb276a04238" />
 
 #### Permissions sur la table
 
@@ -93,6 +98,7 @@ GRANT SELECT ON tp_dcl.etudiants TO etudiant;
 GRANT SELECT, INSERT, UPDATE, DELETE 
 ON tp_dcl.etudiants TO professeur;
 ```
+<img width="578" height="141" alt="image" src="https://github.com/user-attachments/assets/223cda04-712a-4f45-9485-d5ba66ea69a7" />
 
 #### Permissions sur la séquence
 
@@ -118,6 +124,7 @@ INSERT INTO tp_dcl.etudiants VALUES ('Patrick', 85); -- ERREUR
 INSERT INTO tp_dcl.etudiants(nom, moyenne) VALUES ('Khaled', 90); -- OK
 UPDATE tp_dcl.etudiants SET moyenne=95 WHERE nom='Khaled'; -- OK
 ```
+<img width="670" height="92" alt="image" src="https://github.com/user-attachments/assets/258226e4-eb15-4143-9280-628b71a34635" />
 
 ---
 
@@ -128,6 +135,7 @@ REVOKE SELECT ON tp_dcl.etudiants FROM etudiant;
 ```
 
 Test :
+<img width="544" height="66" alt="image" src="https://github.com/user-attachments/assets/cce7a41e-e5e7-4399-b37a-9145d3afd64f" />
 
 ```sql
 SELECT * FROM tp_dcl.etudiants; -- ERREUR
@@ -158,6 +166,7 @@ Puis suppression :
 DROP USER etudiant;
 DROP USER professeur;
 ```
+<img width="808" height="206" alt="image" src="https://github.com/user-attachments/assets/d4bcbc6f-7741-4d52-9bf0-c0006d370c45" />
 
 ---
 
