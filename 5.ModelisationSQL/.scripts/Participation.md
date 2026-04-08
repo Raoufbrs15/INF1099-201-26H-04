@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # Participation
-=======
-# Participation au 08-04-2026 15:35
->>>>>>> de414ab488f6100b978954838cb874f5dc54bb8e
 
 | Table des matières            | Description                                             |
 |-------------------------------|---------------------------------------------------------|
@@ -39,12 +35,12 @@
 | 16 | [300150527](../300150527/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/212277460?s=460&v=4' width=20 height=20></image>](https://github.com/akrembouraoui) | :2nd_place_medal: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | 17 | [300150562](../300150562/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/205994758?s=460&v=4' width=20 height=20></image>](https://github.com/isako29) | :2nd_place_medal: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | 18 | [300151292](../300151292/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/205994792?s=460&v=4' width=20 height=20></image>](https://github.com/akahil521) | :x: | :x: | :x: | :x: | :x: | :x: |
-| 19 | [300151469](../300151469/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/206001876?s=460&v=4' width=20 height=20></image>](https://github.com/Rabia-777) | :2nd_place_medal: | :heavy_check_mark: | :x: | :x: | :x: | :x: |
+| 19 | [300151469](../300151469/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/206001876?s=460&v=4' width=20 height=20></image>](https://github.com/Rabia-777) | :2nd_place_medal: | :x: | :x: | :x: | :x: | :x: |
 | 20 | [300151492](../300151492/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/206000307?s=460&v=4' width=20 height=20></image>](https://github.com/hacen19) | :1st_place_medal: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | 21 | [300151825](../300151825/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/195238262?s=460&v=4' width=20 height=20></image>](https://github.com/FeatFreedy) | :2nd_place_medal: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | 22 | [300151833](../300151833/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/109877652?s=460&v=4' width=20 height=20></image>](https://github.com/raoufbrs15) | :x: | :x: | :x: | :x: | :x: | :x: |
-| 23 | [300151841](../300151841/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/205994823?s=460&v=4' width=20 height=20></image>](https://github.com/massi9313) | :2nd_place_medal: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| 23 | [300151841](../300151841/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/205994823?s=460&v=4' width=20 height=20></image>](https://github.com/massi9313) | :2nd_place_medal: | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: | :x: |
 | 24 | [300153476](../300153476/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/129418622?s=460&v=4' width=20 height=20></image>](https://github.com/dialloramatoulayebah) | :2nd_place_medal: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | 25 | [300153747](../300153747/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/211754108?s=460&v=4' width=20 height=20></image>](https://github.com/madjou15) | :2nd_place_medal: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | 26 | [300154718](../300154718/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/243453409?s=460&v=4' width=20 height=20></image>](https://github.com/stephanetidjet) | :x: | :x: | :x: | :x: | :x: | :x: |
-| :abacus: | \$\frac{13}{27}\$ = 48.15% | \$\displaystyle\sum_{i=1}^{27} s_i\$ = 13 |
+| :abacus: | \$\frac{12}{27}\$ = 44.44% | \$\displaystyle\sum_{i=1}^{27} s_i\$ = 12 |
