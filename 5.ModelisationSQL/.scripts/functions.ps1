@@ -24,7 +24,6 @@ function Get-StudentPaths {
         DML      = "$StudentID/DML.sql"
         DQL      = "$StudentID/DQL.sql"
         DCL      = "$StudentID/DCL.sql"
-        DBScript = "$StudentID/load-db.ps1"
     }
 }
 
@@ -63,8 +62,8 @@ function Write-PresenceHeader {
     Write-Output "## :a: Présence"
     Write-Output ""
 
-    Write-Output "|:hash:| Boréal :id: | README.md | images | DDL.sql | DML.sql | DQL.sql | DCL.sql | :mouse_trap: DB | :wood: log |"
-    Write-Output "|------|-------------|-----------|--------|---------|---------|---------|---------|-----------------|------------|"
+    Write-Output "|:hash:| Boréal :id: | README.md | images | DDL.sql | DML.sql | DQL.sql | DCL.sql |"
+    Write-Output "|------|-------------|-----------|--------|---------|---------|---------|---------|"
 }
 
 
@@ -79,6 +78,6 @@ function Write-StudentRow {
         [string]$ReadmePath
     )
 
-    Write-Output "| $Index | [$StudentID](../$ReadmePath) :point_right: $GitHubLink | $($Checks.README) | $($Checks.Images) | $($Checks.DDL) | $($Checks.DML) | $($Checks.DQL) | $($Checks.DCL) | $DbStatus | $LogLink |"
+    Write-Output "| $Index | [$StudentID](../$ReadmePath) :point_right: $GitHubLink | $($Checks.README) | $($Checks.Images) | $($Checks.DDL) | $($Checks.DML) | $($Checks.DQL) | $($Checks.DCL) |"
 }
 
