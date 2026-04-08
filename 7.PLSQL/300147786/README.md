@@ -5,3 +5,8 @@ Démonstration de PL/pgSQL avec PostgreSQL via Podman : tables, données, procé
 ---
 
 ## 📁 Structure
+📁 /
+├── tests/
+│   ├── 01-ddl.sql
+│   ├── 02-dml.sql
+│   └── 03-programmation.sql
