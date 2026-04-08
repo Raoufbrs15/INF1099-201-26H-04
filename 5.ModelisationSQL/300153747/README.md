@@ -4,6 +4,7 @@ README — Système de Transit de Véhicules (Montréal → Conakry)
 Ce projet vise à concevoir une base de données relationnelle pour gérer le transit de véhicules entre Montréal et Conakry.
 Le système permet de suivre les clients, véhicules, expéditions, ports et transporteurs.
 
+
 🔹 2. Modélisation
 📌 Étapes
 Analyse des besoins : identification des entités et règles d’affaires
@@ -16,6 +17,8 @@ Vehicule
 Expedition
 Port
 Transporteur
+
+
 🔹 3. Implémentation SQL
 🧱 DDL (Structure)
 CREATE TABLE Client (
@@ -47,11 +50,15 @@ JOIN Vehicule v ON c.id_client = v.id_client;
 🔐 DCL (Sécurité)
 GRANT SELECT ON Vehicule TO utilisateur;
 REVOKE DELETE ON Vehicule FROM utilisateur;
+
+
 🔹 4. Bonnes pratiques
 Normalisation (jusqu’à 3FN)
 Utilisation de clés primaires et étrangères
 Réduction de la redondance
 Optimisation des requêtes
+
+
 🔹 5. Conclusion
 
 Cette base de données permet une gestion efficace du transit international de véhicules en garantissant :
