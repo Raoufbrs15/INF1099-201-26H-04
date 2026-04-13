@@ -42,5 +42,5 @@
 | 23 | [300151841](../300151841/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/205994823?s=460&v=4' width=20 height=20></image>](https://github.com/massi9313) | :1st_place_medal: | :heavy_check_mark: | :nine: | 
 | 24 | [300153476](../300153476/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/129418622?s=460&v=4' width=20 height=20></image>](https://github.com/dialloramatoulayebah) | :1st_place_medal: | :heavy_check_mark: | :two: | 
 | 25 | [300153747](../300153747/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/211754108?s=460&v=4' width=20 height=20></image>](https://github.com/madjou15) | :1st_place_medal: | :heavy_check_mark: | :four: | 
-| 26 | [300154718](../300154718/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/243453409?s=460&v=4' width=20 height=20></image>](https://github.com/stephanetidjet) | :1st_place_medal: | :x: | :seven: | 
-| :abacus: | \$\frac{17}{27}\$ = 62.96% | \$\displaystyle\sum_{i=1}^{27} s_i\$ = 17 |
+| 26 | [300154718](../300154718/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/243453409?s=460&v=4' width=20 height=20></image>](https://github.com/stephanetidjet) | :1st_place_medal: | :heavy_check_mark: | :seven: | 
+| :abacus: | \$\frac{18}{27}\$ = 66.67% | \$\displaystyle\sum_{i=1}^{27} s_i\$ = 18 |
