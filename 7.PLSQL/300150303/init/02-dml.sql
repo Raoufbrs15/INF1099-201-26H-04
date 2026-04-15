@@ -7,15 +7,5 @@
 -- ============================================================
 
 -- Étudiants
-INSERT INTO etudiants (nom, age, email) VALUES
-   ('Dubois', 'Lucas', 21, 'lucas.dubois@gmail.com'),
-   ('Martin', 'Sophie', 23, 'sophie.martin@yahoo.com'),
-   ('Nguyen', 'Kevin', 20, 'kevin.nguyen@hotmail.com'),
-   ('Traoré', 'Aminata', 22, 'aminata.traore@gmail.com');
-
--- Cours
-INSERT INTO cours (nom, credits) VALUES
-    ('Bases de donnees',        3),
-    ('Reseaux informatiques',   3),
-    ('Systemes exploitation',   3),
-    ('Programmation Web',       3);
+INSERT INTO etudiants (nom, age, email)
+VALUES ('Test', 20, 'test@email.com');
