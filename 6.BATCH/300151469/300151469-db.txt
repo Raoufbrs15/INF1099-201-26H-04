@@ -78,6 +78,6 @@ Execution de DQL.sql ...
    
 
 ========================================
- Chargement termine en 0.8 secondes.
+ Chargement termine en 1.15 secondes.
  Log sauvegarde dans : execution.log
 ========================================
