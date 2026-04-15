@@ -14,6 +14,7 @@ $ErrorActionPreference = "Stop"
 # $ErrorActionPreference = "Ignore"
 
 function Start-PostgresLab {
+
     docker rm -f tp_postgres 2>$null | Out-Null
 
     docker run -d `
@@ -22,8 +23,9 @@ function Start-PostgresLab {
         -e POSTGRES_PASSWORD=etudiant `
         -e POSTGRES_DB=tpdb `
         -p 5432:5432 `
-        -v $(Get-Location)/init:/docker-entrypoint-initdb.d `
-        postgres:15 | Out-Null
+        -v ${PWD}/init:/docker-entrypoint-initdb.d `
+        postgres:15 2>$null | Out-Null
+
 }
 
 function Wait-PostgresReady {
@@ -45,7 +47,7 @@ function Wait-PostgresReady {
 }
 
 function Initialize-PostgresDatabase {
-    docker exec tp_postgres psql -U postgres -c "CREATE DATABASE ecole;" 2>$null | Out-Null
+    docker exec tp_postgres psql -U postgres -c "CREATE DATABASE tpdb;" 2>$null | Out-Null
 }
 
 function Stop-PostgresLab {
@@ -57,6 +59,8 @@ function Test-LoadDB {
         [string]$StudentID
     )
 
+    Push-Location $StudentID
+
     Start-PostgresLab
 
     try {
@@ -67,19 +71,30 @@ function Test-LoadDB {
 
         Initialize-PostgresDatabase
 
-        Push-Location $StudentID
-        try {
-            pwsh ./load-db.ps1 *> "$StudentID-db.txt"
-            return ":heavy_check_mark:"
+        New-Item -ItemType File -Path "$StudentID-db.txt" -Force | Out-Null
+
+        $sqlContent = Get-Content -Path "tests/test.sql" -Raw
+        docker exec -i tp_postgres psql -U etudiant -d tpdb -c "$sqlContent" *> "$StudentID-db.txt"
+
+        # Check for errors in the generated file
+        if (Test-Path "$StudentID-db.txt") {
+            $content = Get-Content "$StudentID-db.txt" -ErrorAction SilentlyContinue
+            $hasError = $content | Where-Object { $_ -match '(?i)error|exception ' }
+            
+            if ($hasError) {
+                # Write-Host "Errors found in $StudentID-db.txt"
+                return ":boom:"
+            }
         }
-        finally {
-            Pop-Location
-        }
+
+        return ":heavy_check_mark:"
+
     }
     catch {
         return ":x:"
     }
     finally {
         Stop-PostgresLab
+        Pop-Location
     }
 }

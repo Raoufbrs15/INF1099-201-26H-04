@@ -59,8 +59,8 @@ function Write-PresenceHeader {
     Write-Output "## :a: Présence"
     Write-Output ""
 
-    Write-Output "|:hash:| Boréal :id: | README.md | images | init.sql | app.py | requirements.txt  |"
-    Write-Output "|------|-------------|-----------|--------|----------|--------|-------------------|"
+    Write-Output "|:hash:| Boréal :id: | README.md | images | init.sql | app.py | requirements.txt  | :mouse_trap: DB | :wood: log |"
+    Write-Output "|------|-------------|-----------|--------|----------|--------|-------------------|-----------------|------------|"
 }
 
 
@@ -75,7 +75,6 @@ function Write-StudentRow {
         [string]$ReadmePath
     )
 
-    # Write-Output "| $Index | [$StudentID](../$ReadmePath) :point_right: $GitHubLink | $($Checks.README) | $($Checks.Images) | $($Checks.INIT) | $($Checks.PROG) | $($Checks.REQ) | $DbStatus | $LogLink |"
-    Write-Output "| $Index | [$StudentID](../$ReadmePath) :point_right: $GitHubLink | $($Checks.README) | $($Checks.Images) | $($Checks.INIT) | $($Checks.PROG) | $($Checks.REQ) |"
+    Write-Output "| $Index | [$StudentID](../$ReadmePath) :point_right: $GitHubLink | $($Checks.README) | $($Checks.Images) | $($Checks.INIT) | $($Checks.PROG) | $($Checks.REQ) | $DbStatus | $LogLink |"
 }
 

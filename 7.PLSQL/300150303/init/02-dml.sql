@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- ============================================================
 -- 02-dml.sql
 -- Data Manipulation Language
@@ -26,3 +27,7 @@ CREATE TABLE cours (
 );
 
 INSERT INTO cours (nom, credits)
+=======
+INSERT INTO etudiants (nom, age, email)
+VALUES ('Test', 20, 'test@email.com');
+>>>>>>> d88623c8f4f8c7a8d4053a80c348d046a27eb0ee

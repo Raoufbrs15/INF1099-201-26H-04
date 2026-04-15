@@ -280,7 +280,7 @@ docker run -d `
   -e POSTGRES_PASSWORD=etudiant `
   -e POSTGRES_DB=tpdb `
   -p 5432:5432 `
-  -v $(Get-Location)/init:/docker-entrypoint-initdb.d `
+  -v ${PWD}/init:/docker-entrypoint-initdb.d `
   postgres:15
 ```
 
@@ -293,7 +293,7 @@ docker run -d \
   -e POSTGRES_PASSWORD=etudiant \
   -e POSTGRES_DB=tpdb \
   -p 5432:5432 \
-  -v $(pwd)/init:/docker-entrypoint-initdb.d \
+  -v ${PWD}/init:/docker-entrypoint-initdb.d \
   postgres:15
 ```
 
@@ -379,10 +379,19 @@ docker container exec -it tp_postgres psql -U etudiant -d tpdb
 
 ---
 
-## 6️⃣ Automatiser les tests (optionnel)
+## 6️⃣ Automatiser les tests
+
+
+- [ ] 🪟 Windows
+
+```powershell
+Get-Content tests/test.sql | docker exec -i tp_postgres psql -U etudiant -d tpdb
+```
+
+- [ ] 🐧 *nix
 
 ```bash
-docker container exec -i tp_postgres psql -U etudiant -d tpdb -f /tests/test.sql
+docker container exec -i tp_postgres psql -U etudiant -d tpdb < tests/test.sql
 ```
 
 > Les étudiants verront directement les résultats des triggers et procédures.
