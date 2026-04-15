@@ -1,103 +1,195 @@
+# 🧪🐘 TP PowerShell — Automatisation PostgreSQL avec Docker
 
+## 👤 Informations de l’étudiant
 
----
-
-## Types de scripts SQL
-
-- **DDL** : création de la table (CREATE TABLE)
-- **DML** : insertion des données (INSERT)
-- **DCL** : gestion des droits (GRANT)
-- **DQL** : requête (SELECT)
+* **Nom :** Aroua Mohand Tahar
+* **Numéro étudiant :** 300150284
 
 ---
 
-## Étapes
+## 📌 Contexte du TP
 
+Ce laboratoire consiste à automatiser le chargement d’une base de données PostgreSQL en utilisant :
 
-# TP PostgreSQL avec Docker et PowerShell
+* 🐳 Docker
+* 🐘 PostgreSQL
+* ⚙️ PowerShell
 
-## Description
-
-Ce laboratoire montre comment automatiser le chargement d’une base de données PostgreSQL en utilisant Docker et un script PowerShell.
-
-Le projet utilise plusieurs scripts SQL exécutés automatiquement dans un conteneur PostgreSQL.
-
----
-
-## Objectifs
-
-- Comprendre les types de scripts SQL (DDL, DML, DCL, DQL)
-- Utiliser Docker pour lancer PostgreSQL
-- Automatiser l’exécution des scripts avec PowerShell
-- Charger une base de données en une seule commande
+L’objectif est d’exécuter plusieurs scripts SQL automatiquement dans le bon ordre.
 
 ---
 
-## Structure du projet
+## 🎯 Objectifs pédagogiques
 
+* 📊 Comprendre les types de scripts SQL (DDL, DML, DCL, DQL)
+* 🐳 Déployer PostgreSQL avec Docker
+* ⚙️ Automatiser l’exécution avec PowerShell
+* 🔄 Charger une base automatiquement
+* 🔍 Vérifier les résultats
 
-labo-postgres/
+---
+
+## 🧱 Structure du projet
+
+```text id="qf1g3x"
+📁 Projet/
 ├── DDL.sql
 ├── DML.sql
 ├── DCL.sql
 ├── DQL.sql
-└── load-db.ps1
-
-
----
-
-## Types de scripts SQL
-
-- **DDL** : création de la table (CREATE TABLE)
-- **DML** : insertion des données (INSERT)
-- **DCL** : gestion des droits (GRANT)
-- **DQL** : requête (SELECT)
+├── load-db.ps1
+└── 📁 images/
+    ├── 1.png
+    ├── 2.png
+    └── 3.png
+```
 
 ---
 
-## Étapes
+## ⚙️ Implémentation
 
-### 1. Démarrer Docker
+### 🗄️ Types de scripts SQL
 
-Ouvrir Docker Desktop et attendre qu’il soit en cours d’exécution.
+| Type | Description           |
+| ---- | --------------------- |
+| DDL  | Création des tables   |
+| DML  | Insertion des données |
+| DCL  | Gestion des droits    |
+| DQL  | Requêtes SELECT       |
 
 ---
 
-### 2. Lancer PostgreSQL
+### 🔄 Ordre d’exécution
 
-```powershell
-docker container run -d --name postgres-lab -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=ecole -p 5432:5432 postgres
-3. Exécuter le script
-.\load-db.ps1
-4. Vérifier les données
-docker exec -it postgres-lab psql -U postgres -d ecole
+```text id="v6q3di"
+DDL → DML → DCL → DQL
+```
 
-Puis :
+👉 Cet ordre garantit le bon fonctionnement du chargement.
 
+---
+
+## 🐳 Déploiement PostgreSQL
+
+```powershell id="2xxc6y"
+docker container run -d `
+--name postgres-lab `
+-e POSTGRES_PASSWORD=postgres `
+-e POSTGRES_DB=ecole `
+-p 5432:5432 `
+postgres
+```
+
+---
+
+## ⚙️ Script PowerShell
+
+Le script `load-db.ps1` permet :
+
+* 📥 de lire les fichiers SQL
+* 🔁 de les exécuter automatiquement
+* ✔️ d’afficher les résultats
+
+---
+
+## ▶️ Exécution
+
+```powershell id="w6f2o3"
+pwsh ./load-db.ps1
+```
+
+---
+
+# 📸 Résultats obtenus (captures réelles)
+
+---
+
+## 🟢 1. Exécution du script PowerShell
+
+![Execution du script](images/1.png)
+
+👉 On observe :
+
+* ✔️ CREATE TABLE (DDL exécuté)
+* ✔️ INSERT 0 5 (DML exécuté)
+* ✔️ CREATE ROLE + GRANT (DCL exécuté)
+* ✔️ affichage des données (DQL)
+
+👉 La base est chargée correctement sans erreur.
+
+---
+
+## 🟢 2. Vérification dans PostgreSQL
+
+![Verification SQL](images/2.png)
+
+👉 Requête exécutée :
+
+```sql id="d27h7m"
 SELECT * FROM etudiants;
-Résultat attendu
- id | nom     | prenom | age | programme
-----+---------+--------+-----+-------------------
- 1  | Dupont  | Alice  | 20  | Informatique
- 2  | Martin  | Bob    | 22  | Réseau
- 3  | Bernard | Claire | 19  | Cybersécurité
- 4  | Petit   | David  | 21  | Base de données
- 5  | Robert  | Emma   | 23  | Programmation
-Remarque
+```
 
-Si le script est exécuté plusieurs fois, des doublons peuvent apparaître.
+👉 Résultat :
 
-Solution :
+* ✔️ données présentes dans la table
+* ✔️ 10 lignes (car insertion exécutée 2 fois)
+* ✔️ structure correcte
 
-Ajouter DELETE FROM etudiants; dans DML.sql
-ou DROP TABLE IF EXISTS etudiants; dans DDL.sql
-Conclusion
+---
 
-Ce TP permet de comprendre comment automatiser le chargement d’une base de données avec Docker et PowerShell de manière simple et efficace.
+## 🟢 3. Structure des fichiers PowerShell
 
+![Structure fichiers](images/3.png)
 
+👉 On voit :
 
-Dans PowerShell :
+* ✔️ tous les fichiers SQL présents
+* ✔️ script `load-db.ps1`
+* ✔️ organisation correcte du projet
 
-```powershell
+---
 
+## 🔍 Analyse
+
+* ✔️ La base fonctionne correctement
+* ✔️ Les scripts sont exécutés dans le bon ordre
+* ✔️ Les données sont bien insérées
+* ✔️ Le script PowerShell automatise tout le processus
+
+---
+
+## ⚠️ Remarque importante
+
+👉 On observe **10 lignes au lieu de 5** :
+
+➡️ Cela signifie que le script a été exécuté **2 fois**
+
+💡 Solution possible :
+
+* vider la table avant insertion
+* ou éviter les doublons
+
+---
+
+## 🎯 Conclusion
+
+Ce TP démontre :
+
+* ⚡ la puissance de PowerShell pour automatiser
+* 🐳 l’efficacité de Docker
+* 🐘 la flexibilité de PostgreSQL
+
+👉 L’ensemble permet de créer un système **rapide, reproductible et automatisé**.
+
+---
+
+## 🚀 Améliorations possibles
+
+* 🧾 ajouter un fichier log
+* ⏱️ mesurer le temps d’exécution
+* ⚙️ ajouter des paramètres au script
+* 🔐 améliorer la gestion des erreurs
+
+---
+
+✨ **Fin du TP**
