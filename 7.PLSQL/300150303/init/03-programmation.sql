@@ -64,6 +64,28 @@ BEGIN
 END;
 $$;
 
+
+-- ============================================================
+-- 2️⃣ Fonction : nombre_etudiants
+-- ============================================================
+-- Objectif : Retourne le nombre total d'étudiants
+-- Appelée dans test.sql : SELECT nombre_etudiants();
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION nombre_etudiants()
+RETURNS INT
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    total INT;
+BEGIN
+    SELECT COUNT(*) INTO total
+    FROM etudiants;
+
+    RETURN total;
+END;
+$$;
+
 -- ============================================================
 -- 3️⃣ Procédure : inscrire_etudiant_cours
 -- ============================================================
@@ -163,3 +185,7 @@ CREATE TRIGGER trg_log_inscription
 AFTER INSERT OR UPDATE OR DELETE ON inscriptions
 FOR EACH ROW
 EXECUTE FUNCTION log_action();
+
+
+
+
