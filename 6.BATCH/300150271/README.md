@@ -82,6 +82,7 @@ docker ps
 ```
 
 🖼️ Capture — Docker actif
+
 <img width="797" height="142" alt="Screenshot 2026-04-15 190310" src="https://github.com/user-attachments/assets/21f66ef8-8c1f-4207-9853-55b3f84ab072" />
 
 ![docker](images/docker.png)
