@@ -26,10 +26,10 @@ CALL
 CALL
  id |                       action                        |        date_action         
 ----+-----------------------------------------------------+----------------------------
-  1 | INSERT sur etudiants : nom=Ali                      | 2026-04-16 03:56:15.227408
-  2 | AJOUT étudiant : Ali (email : ali@email.com)        | 2026-04-16 03:56:15.227408
-  3 | INSERT sur inscriptions : etudiant_id=4, cours_id=3 | 2026-04-16 03:56:15.227408
-  4 | INSCRIPTION : ali@email.com → cours "Réseaux"       | 2026-04-16 03:56:15.227408
+  1 | INSERT sur etudiants : nom=Ali                      | 2026-04-16 06:18:10.957769
+  2 | AJOUT étudiant : Ali (email : ali@email.com)        | 2026-04-16 06:18:10.957769
+  3 | INSERT sur inscriptions : etudiant_id=4, cours_id=3 | 2026-04-16 06:18:10.957769
+  4 | INSCRIPTION : ali@email.com → cours "Réseaux"       | 2026-04-16 06:18:10.957769
 (4 rows)
 
   nom  | age |      email      |       cours       

@@ -6,8 +6,8 @@ NOTICE:  table "preference" does not exist, skipping
 DROP TABLE
 DROP TABLE
 DROP TABLE
-NOTICE:  table "annonce" does not exist, skipping
 DROP TABLE
+NOTICE:  table "annonce" does not exist, skipping
 NOTICE:  table "profil" does not exist, skipping
 NOTICE:  table "utilisateur" does not exist, skipping
 DROP TABLE
@@ -50,7 +50,7 @@ Execution de DQL.sql
 
              contenu              |         date_envoi         | prenom  
 ----------------------------------+----------------------------+---------
- Salut, ton annonce m’intéresse ! | 2026-04-16 03:54:36.276101 | Mamadou
+ Salut, ton annonce m’intéresse ! | 2026-04-16 06:16:33.066906 | Mamadou
 (1 row)
 
  id_match | date_match |  statut  | id_utilisateur_1 | id_utilisateur_2 
