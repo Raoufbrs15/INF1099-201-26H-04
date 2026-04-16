@@ -102,7 +102,7 @@ CREATE TABLE tp\_dcl.reservation (
 
 
 
-!\[Capture 1 - Création base schéma et table](images/capture1.png)
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/4.DCL/300150293/images/capture1.png)
 
 
 
@@ -148,7 +148,7 @@ CREATE USER gestionnaire WITH PASSWORD 'gest123';
 
 
 
-!\[Capture 2 - Création des 3 utilisateurs](images/capture2.png)
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/4.DCL/300150293/images/capture2.png)
 
 
 
@@ -200,7 +200,7 @@ GRANT USAGE, SELECT, UPDATE ON SEQUENCE tp\_dcl.reservation\_id\_seq TO employe\
 
 
 
-!\[Capture 3 - Attribution des permissions GRANT](images/capture3.png)
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/4.DCL/300150293/images/capture3.png)
 
 
 
@@ -236,7 +236,7 @@ VALUES ('Hack', 'Terrain X', 0);
 
 
 
-!\[Capture 4 - Test client\_sport SELECT OK INSERT ERREUR](images/capture4.png)
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/4.DCL/300150293/images/capture4.png)
 
 
 
@@ -270,7 +270,7 @@ DELETE FROM tp\_dcl.reservation WHERE client = 'Alex';
 
 
 
-!\[Capture 5 - Test employe\_sport INSERT UPDATE OK DELETE ERREUR](images/capture5.png)
+![wait](https://github.com/CollegeBoreal/INF1099-201-26H-04/blob/main/4.DCL/300150293/images/capture5.png)
 
 
 
@@ -300,15 +300,8 @@ REVOKE SELECT ON tp\_dcl.reservation FROM client\_sport;
 
 SELECT \* FROM tp\_dcl.reservation;  -- ❌ ERREUR maintenant
 
-```
 
 
-
-!\[Capture 6 - REVOKE SELECT refusé à client\_sport](images/capture6.png)
-
-
-
-\---
 
 
 
@@ -343,10 +336,6 @@ DROP USER employe\_sport;
 DROP USER gestionnaire;
 
 ```
-
-
-
-!\[Capture 7 - DROP USER suppression des 3 utilisateurs](images/capture7.png)
 
 
 
