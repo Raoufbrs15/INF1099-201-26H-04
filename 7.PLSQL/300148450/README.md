@@ -1,6 +1,6 @@
 # 🐘 TP PostgreSQL — Fonctions, Procédures Stockées et Triggers
 
-## 👤 Informations de l’étudiant
+## 👤 Informations de l'étudiant
 - **Nom :** Adjaoud Hocine
 - **Numéro étudiant :** 300148450
 
@@ -8,17 +8,17 @@
 
 ## 📌 Description du laboratoire
 
-Ce laboratoire a pour objectif de découvrir les langages procéduraux dans PostgreSQL à travers l’utilisation de **fonctions**, de **procédures stockées** et de **triggers** en **PL/pgSQL**.
+Ce laboratoire a pour objectif de découvrir les langages procéduraux dans PostgreSQL à travers l'utilisation de **fonctions**, de **procédures stockées** et de **triggers** en **PL/pgSQL**.
 
-Le projet permet de comprendre comment intégrer une logique métier directement dans la base de données afin d’automatiser certaines validations, journaliser des opérations et améliorer la cohérence des données.
+Le projet permet de comprendre comment intégrer une logique métier directement dans la base de données afin d'automatiser certaines validations, journaliser des opérations et améliorer la cohérence des données.
 
 ---
 
 ## 🎯 Objectifs pédagogiques
 
-À la fin de ce laboratoire, l’étudiant sera capable de :
+À la fin de ce laboratoire, l'étudiant sera capable de :
 
-- distinguer une **fonction** d’une **procédure stockée**
+- distinguer une **fonction** d'une **procédure stockée**
 - créer et exécuter du code en **PL/pgSQL**
 - utiliser des **triggers** pour automatiser des actions
 - gérer les erreurs avec `RAISE NOTICE` et `RAISE EXCEPTION`
@@ -37,7 +37,7 @@ SELECT nombre_etudiants_par_age(18, 25);
 ```
 
 ### Procédure stockée
-Une procédure exécute une série d’actions, sans retourner directement une valeur dans un `SELECT`.
+Une procédure exécute une série d'actions, sans retourner directement une valeur dans un `SELECT`.
 
 Exemple :
 ```sql
@@ -45,7 +45,7 @@ CALL ajouter_etudiant('Ali', 22, 'ali@email.com');
 ```
 
 ### Trigger
-Un trigger exécute automatiquement une fonction lorsqu’un événement survient sur une table (`INSERT`, `UPDATE`, `DELETE`).
+Un trigger exécute automatiquement une fonction lorsqu'un événement survient sur une table (`INSERT`, `UPDATE`, `DELETE`).
 
 ---
 
@@ -61,6 +61,12 @@ Un trigger exécute automatiquement une fonction lorsqu’un événement survien
 │
 ├── tests/
 │   └── test.sql
+│
+├── images/
+│   ├── 1.png
+│   ├── 2.png
+│   ├── ...
+│   └── 13.png
 │
 └── README.md
 ```
@@ -93,6 +99,8 @@ docker run -d `
   postgres:15
 ```
 
+![1.png - Lancement du conteneur Docker](images/1.png)
+
 ### Linux / macOS
 
 ```bash
@@ -105,6 +113,16 @@ docker run -d \
   -v ${PWD}/init:/docker-entrypoint-initdb.d \
   postgres:15
 ```
+
+---
+
+## 🔄 Connexion à PostgreSQL
+
+```bash
+docker container exec -it tp_postgres psql -U etudiant -d tpdb
+```
+
+![2.png - Connexion à psql](images/2.png)
 
 ---
 
@@ -131,7 +149,7 @@ Ce fichier contient toute la logique procédurale du laboratoire :
 - trigger de journalisation
 
 ### `tests/test.sql`
-Ce fichier permet d’exécuter les tests afin de vérifier que :
+Ce fichier permet d'exécuter les tests afin de vérifier que :
 - les insertions valides fonctionnent
 - les validations bloquent les données invalides
 - les fonctions retournent les bonnes valeurs
@@ -139,68 +157,147 @@ Ce fichier permet d’exécuter les tests afin de vérifier que :
 
 ---
 
-## 🔄 Connexion à PostgreSQL
+## ▶️ Exécution pas à pas
+
+### Étape 1 — Création des tables (DDL)
 
 ```bash
-docker container exec -it tp_postgres psql -U etudiant -d tpdb
+\i init/01-ddl.sql
 ```
 
----
+![3.png - Création des tables](images/3.png)
 
-## ▶️ Exécution des tests
+Les quatre tables `etudiants`, `cours`, `inscriptions` et `logs` sont créées avec succès. Les anciennes tables sont d'abord supprimées avec `DROP TABLE ... CASCADE` pour garantir un état propre.
 
-### Windows PowerShell
-
-```powershell
-Get-Content tests/test.sql | docker exec -i tp_postgres psql -U etudiant -d tpdb
-```
-
-### Linux / macOS
+### Étape 2 — Insertion des données initiales (DML)
 
 ```bash
-docker container exec -i tp_postgres psql -U etudiant -d tpdb < tests/test.sql
+\i init/02-dml.sql
 ```
 
+![4.png - Insertion des données](images/4.png)
+
+Deux étudiants (Test, Sara) et trois cours (Base de donnees, Programmation, Reseautique) sont insérés dans la base de données.
+
+### Étape 3 — Création des procédures, fonctions et triggers
+
+```bash
+\i init/03-programmation.sql
+```
+
+![5.png - Programmation PL/pgSQL](images/5.png)
+
+Toute la logique procédurale est déployée : procédures stockées, fonctions, triggers de validation et de journalisation.
+
 ---
 
-## ✅ Résultats attendus
+## 🧪 Tests réalisés
 
-Les résultats attendus du laboratoire sont les suivants :
-
-- ajout réussi d’un étudiant valide
-- refus d’un étudiant dont l’âge est inférieur à 18 ans
-- refus d’un étudiant avec un email invalide
-- affichage du nombre d’étudiants dans une tranche d’âge
-- inscription d’un étudiant à un cours
-- génération automatique de logs dans la table `logs`
-
----
-
-## 🧪 Exemples de tests réalisés
-
-### Ajouter un étudiant valide
+### Test 1 — Ajout d'un étudiant valide
 
 ```sql
 CALL ajouter_etudiant('Ali', 22, 'ali@email.com');
 ```
 
-### Tester un âge invalide
+![6.png - Ajout étudiant valide](images/6.png)
+
+L'étudiant Ali est ajouté avec succès. La procédure valide l'âge (22 >= 18), vérifie le format de l'email, s'assure que l'email n'est pas déjà utilisé, puis insère l'étudiant et journalise l'action.
+
+### Test 2 — Test d'un âge invalide
 
 ```sql
-CALL ajouter_etudiant('Bob', 15, 'bob@email.com');
+DO $$
+BEGIN
+    BEGIN
+        CALL ajouter_etudiant('Bob', 15, 'bob@email.com');
+    EXCEPTION
+        WHEN others THEN
+            RAISE NOTICE 'Test age invalide : OK';
+    END;
+END;
+$$;
 ```
 
-### Vérifier le nombre d’étudiants
+![7.png - Test âge invalide](images/7.png)
+
+L'insertion de Bob (15 ans) est correctement refusée. La procédure détecte que l'âge est inférieur à 18 ans et lève une exception. Le bloc `EXCEPTION` intercepte l'erreur et confirme que le test est réussi.
+
+### Test 3 — Test d'un email invalide
 
 ```sql
-SELECT nombre_etudiants_par_age(18, 25);
+DO $$
+BEGIN
+    BEGIN
+        CALL ajouter_etudiant('Karim', 21, 'karim-email-invalide');
+    EXCEPTION
+        WHEN others THEN
+            RAISE NOTICE 'Test email invalide : OK';
+    END;
+END;
+$$;
 ```
 
-### Inscrire un étudiant à un cours
+![8.png - Test email invalide](images/8.png)
+
+L'insertion de Karim avec un email sans `@` est rejetée. La validation par expression régulière dans la procédure refuse les emails mal formatés.
+
+### Test 4 — Fonction `nombre_etudiants_par_age`
+
+```sql
+SELECT nombre_etudiants_par_age(18, 25) AS total_18_25;
+```
+
+![9.png - Résultat de la fonction](images/9.png)
+
+La fonction retourne `3`, ce qui correspond aux trois étudiants (Test 20 ans, Sara 23 ans, Ali 22 ans) dont l'âge se situe entre 18 et 25 ans inclus.
+
+### Test 5 — Inscription à un cours
 
 ```sql
 CALL inscrire_etudiant_cours('ali@email.com', 'Base de donnees');
 ```
+
+![10.png - Inscription au cours](images/10.png)
+
+Ali est inscrit avec succès au cours « Base de donnees ». La procédure vérifie l'existence de l'étudiant et du cours, s'assure qu'il n'y a pas de doublon, puis crée l'inscription et journalise l'action.
+
+---
+
+## ✅ Vérification des données
+
+### Table `etudiants`
+
+```sql
+SELECT * FROM etudiants ORDER BY id;
+```
+
+![11.png - Contenu de la table etudiants](images/11.png)
+
+Trois étudiants sont présents dans la base : Test (20 ans), Sara (23 ans) et Ali (22 ans), chacun avec un email unique et une date de création automatique.
+
+### Table `inscriptions`
+
+```sql
+SELECT * FROM inscriptions ORDER BY id;
+```
+
+![12.png - Contenu de la table inscriptions](images/12.png)
+
+Une inscription a été créée : Ali (id=3) est inscrit au cours « Base de donnees » (id=1).
+
+### Table `logs`
+
+```sql
+SELECT * FROM logs ORDER BY id;
+```
+
+![13.png - Contenu de la table logs](images/13.png)
+
+Huit entrées de journalisation sont enregistrées, couvrant :
+- les insertions automatiques par trigger (INSERT sur `etudiants`)
+- l'ajout manuel d'Ali via la procédure
+- les erreurs capturées pour Bob (âge invalide) et Karim (email invalide)
+- l'inscription d'Ali au cours et le trigger associé
 
 ---
 
@@ -210,8 +307,8 @@ Ce TP met en évidence deux mécanismes importants :
 
 ### Validation
 Le trigger `trg_valider_etudiant` vérifie automatiquement :
-- que l’âge est valide
-- que l’adresse email respecte un format acceptable
+- que l'âge est valide
+- que l'adresse email respecte un format acceptable
 
 ### Journalisation
 Les triggers de log enregistrent automatiquement les opérations effectuées sur :
@@ -227,18 +324,8 @@ Cela permet de conserver une trace des actions réalisées dans la base.
 - validation des données avant insertion
 - gestion des erreurs avec messages explicites
 - séparation claire entre structure, données, logique et tests
-- utilisation d’un environnement Docker reproductible
+- utilisation d'un environnement Docker reproductible
 - scripts organisés pour faciliter la maintenance
-
----
-
-## 🧾 Conclusion
-
-Ce laboratoire permet de comprendre le rôle essentiel des langages procéduraux dans un système de gestion de base de données moderne.
-
-L’utilisation de **PL/pgSQL** permet de centraliser certaines règles métier directement dans la base, d’automatiser des comportements à l’aide des triggers et de sécuriser les traitements grâce à la gestion des exceptions.
-
-Ce TP constitue une excellente introduction aux mécanismes avancés de PostgreSQL dans un contexte proche des besoins professionnels.
 
 ---
 
