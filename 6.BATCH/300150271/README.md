@@ -1,162 +1,135 @@
-<div align="center">
+# 🧪 Lab 6 — Automatisation PostgreSQL avec PowerShell & Docker
 
-# 🏢 TP Batch — PowerShell & PostgreSQL (Immobilier)
-
-<img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=22&pause=1000&color=00F7FF&center=true&vCenter=true&width=750&lines=Base+de+donnees+Immobiliere;Automatisation+PostgreSQL;PowerShell+%2B+Docker" />
-
-<br/>
-
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=for-the-badge\&logo=postgresql\&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Conteneur-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
-![PowerShell](https://img.shields.io/badge/PowerShell-Script-5391FE?style=for-the-badge\&logo=powershell\&logoColor=white)
-
-</div>
+INF1099 — Bases de données  
+Étudiant : Mazigh Bareche  
+Matricule : 300150271
 
 ---
 
-## 🎯 Objectifs
+## 📋 Table des matières
 
-| # | Objectif                                | Statut |
-| - | --------------------------------------- | ------ |
-| 1 | Comprendre DDL, DML, DCL, DQL           | ✅      |
-| 2 | Utiliser Docker avec PostgreSQL         | ✅      |
-| 3 | Automatiser avec PowerShell             | ✅      |
-| 4 | Charger les scripts SQL automatiquement | ✅      |
+- 🎯 Objectif  
+- 🛠 Technologies  
+- 📁 Structure du projet  
+- 🐳 Mise en place  
+- ⚙️ Script PowerShell  
+- 📊 Vérification des données  
+- 📸 Captures  
+- ✅ Résultats  
+
+---
+
+## 🎯 Objectif
+
+Ce laboratoire consiste à automatiser le déploiement d’une base de données PostgreSQL à l’aide d’un script PowerShell exécuté dans un conteneur Docker.
+
+Les scripts SQL sont exécutés dans l’ordre suivant :
+
+DDL → DML → DCL → DQL
+
+| Étape | Fichier | Rôle |
+|------|--------|------|
+| 1️⃣ | DDL.sql | Création des tables |
+| 2️⃣ | DML.sql | Insertion des données |
+| 3️⃣ | DCL.sql | Gestion des utilisateurs |
+| 4️⃣ | DQL.sql | Vérification des données |
+
+---
+
+## 🛠 Technologies
+
+- Docker  
+- PostgreSQL  
+- PowerShell  
+- SQL  
 
 ---
 
 ## 📁 Structure du projet
 
-```
-300150271/
- ┣ DDL.sql
- ┣ DML.sql
- ┣ DCL.sql
- ┣ DQL.sql
- ┣ load-db.ps1
- ┣ images/
- ┗ README.md
-```
+6.BATCH/
+└── 300150271/
+    ├── DDL.sql
+    ├── DML.sql
+    ├── DCL.sql
+    ├── DQL.sql
+    ├── load-db.ps1
+    └── images/
+
+🖼️ Capture — Structure du projet  
+![structure](images/structure.png)
 
 ---
 
-## 🏢 Domaine
+## 🐳 Mise en place
 
-Système de gestion des ventes d’appartements dans des immeubles.
+### 1. Lancer PostgreSQL avec Docker
 
----
+docker run -d --name postgres-immo -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=ecole -p 5432:5432 postgres
 
-## 🗂️ Types de scripts SQL
+### 2. Vérifier le conteneur
 
-| Type    | Description             | Commandes |
-| ------- | ----------------------- | --------- |
-| 🏗️ DDL | Création des tables     | CREATE    |
-| 📥 DML  | Insertion des données   | INSERT    |
-| 🔐 DCL  | Gestion des permissions | GRANT     |
-| 🔍 DQL  | Requêtes                | SELECT    |
+docker ps
+
+🖼️ Capture — Docker actif  
+![docker](images/docker.png)
 
 ---
 
-## 🐳 Démarrage avec Docker
+## ⚙️ Script PowerShell
 
-### Lancer PostgreSQL
+Le script load-db.ps1 permet d’exécuter automatiquement tous les fichiers SQL.
 
-```powershell
-docker run -d --name postgres-immo -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=immobilier -p 5432:5432 postgres
-```
+### Exécution
 
----
-
-## ⚡ Exécution
-
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 .\load-db.ps1
-```
+
+🖼️ Capture — Exécution du script  
+![script](images/script.png)
 
 ---
 
-## 📝 Scripts SQL
+## 📊 Vérification des données
 
-### 🏗️ DDL.sql
+Connexion à PostgreSQL :
 
-Création des tables :
+docker exec -it postgres-immo psql -U postgres -d ecole
 
-* client
-* immeuble
-* appartement
-* vente
+Requête :
 
----
-
-### 📥 DML.sql
-
-Insertion des données :
-
-* clients
-* immeubles
-* appartements
-* ventes
-
----
-
-### 🔐 DCL.sql
-
-Gestion des accès :
-
-```sql
-DROP ROLE IF EXISTS lecteur;
-CREATE ROLE lecteur LOGIN PASSWORD '1234';
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO lecteur;
-```
-
----
-
-### 🔍 DQL.sql
-
-Requêtes :
-
-```sql
 SELECT * FROM client;
-SELECT * FROM appartement;
-```
 
----
-
-## 🔧 Script PowerShell
-
-Automatisation complète de l’exécution des scripts SQL dans Docker.
-
----
-
-## 📊 Résultat
-
-```
-Execution DDL
-DROP TABLE
-CREATE TABLE
-
-Execution DML
-INSERT
-
-Execution DCL
-GRANT
-
-Execution DQL
-SELECT ...
-```
+🖼️ Capture — Résultat PostgreSQL  
+![postgres](images/postgres.png)
 
 ---
 
 ## 📸 Captures
 
-* docker ps
-* structure du dossier
-* exécution du script
+- Structure du projet  
+- Docker actif  
+- Exécution du script  
+- Résultat PostgreSQL  
+
+---
+
+## ✅ Résultats
+
+- Tables créées  
+- Données insérées  
+- Permissions appliquées  
+- Script automatisé  
+- Résultat validé  
+
+---
+
+## 🏁 Conclusion
+
+Ce laboratoire montre comment automatiser complètement la création et l’utilisation d’une base de données PostgreSQL avec Docker et PowerShell.
 
 ---
 
 ## 👨‍🎓 Auteur
 
-Mazigh Bareche
-Matricule : 300150271
+Mazigh Bareche  
+INF1099 — Bases de données
