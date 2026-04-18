@@ -1,21 +1,5 @@
 # 🐘 TP PostgreSQL — Procédures Stockées, Fonctions & Triggers
 
-## 📁 Structure du projet
-
-```
-tp_postgres/
-│
-├── init/
-│   ├── 01-ddl.sql              ← Création des tables
-│   ├── 02-dml.sql              ← Données initiales
-│   └── 03-programmation.sql   ← ✏️ À compléter par l'étudiant
-│
-├── tests/
-│   └── test.sql                ← Tests automatisés
-│
-└── README.md                   ← Ce fichier
-```
-
 ---
 
 ## 🚀 Lancer le projet
@@ -117,49 +101,4 @@ Puis relancer la commande `docker run` (étape 3).
 
 ---
 
-## 🛠️ Commandes utiles
 
-| Commande | Description |
-|---|---|
-| `docker ps` | Voir les conteneurs actifs |
-| `docker logs tp_postgres` | Voir les logs du conteneur |
-| `docker rm -f tp_postgres` | Supprimer le conteneur |
-| `\dt` (dans psql) | Lister les tables |
-| `\df` (dans psql) | Lister les fonctions |
-| `\q` (dans psql) | Quitter psql |
-
----
-
-## 📚 Rappel syntaxe PL/pgSQL
-
-```sql
--- Fonction
-CREATE OR REPLACE FUNCTION ma_fonction(param INT)
-RETURNS INT LANGUAGE plpgsql AS $$
-BEGIN
-    RETURN param * 2;
-END;
-$$;
-
--- Procédure
-CREATE OR REPLACE PROCEDURE ma_procedure(param TEXT)
-LANGUAGE plpgsql AS $$
-BEGIN
-    INSERT INTO logs(action) VALUES (param);
-    RAISE NOTICE 'OK : %', param;
-END;
-$$;
-
--- Trigger
-CREATE OR REPLACE FUNCTION ma_fonction_trigger()
-RETURNS trigger AS $$
-BEGIN
-    -- NEW = nouvelle ligne, OLD = ancienne ligne
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER mon_trigger
-BEFORE INSERT ON ma_table
-FOR EACH ROW EXECUTE FUNCTION ma_fonction_trigger();
-```
