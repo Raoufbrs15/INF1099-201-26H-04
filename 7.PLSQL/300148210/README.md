@@ -1,13 +1,6 @@
 # 🐘 TP PostgreSQL
 
 ---
-
-## 🚀 Lancer le projet
-
-### Prérequis
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installé et démarré
-
 ### 1. Créer les dossiers (PowerShell)
 
 ```powershell
