@@ -357,17 +357,4 @@ Les quatre types de scripts SQL (DDL, DML, DCL, DQL) ont été exécutés avec s
 en **4.1 secondes** sur le conteneur `postgres2`, avec journalisation complète
 dans `execution.log`.
 
----
 
-<details>
-<summary>👤 Auteur</summary>
-
-<div align="center">
-
-![Coder Cat](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif)
-
-*Rédigé par un humain... probablement.* 
-
-</div>
-
-</details>
