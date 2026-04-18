@@ -1,4 +1,4 @@
-# 🐘 TP PostgreSQL — Procédures Stockées, Fonctions & Triggers
+# 🐘 TP PostgreSQL
 
 ---
 
@@ -11,9 +11,9 @@
 ### 1. Créer les dossiers (PowerShell)
 
 ```powershell
-mkdir tp_postgres\init
-mkdir tp_postgres\tests
-cd tp_postgres
+mkdir 300148210\init
+mkdir 300148210\tests
+cd 300148210
 ```
 
 ### 2. Placer les fichiers SQL dans `init/`
