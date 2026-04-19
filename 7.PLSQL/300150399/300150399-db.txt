@@ -1,4 +1,3 @@
-ERROR:  procedure ajouter_etudiant(unknown, integer, unknown) does not exist
-LINE 4: CALL ajouter_etudiant('Test User', 23, 'test@email.com');
-             ^
-HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+ERROR:  Age invalide (doit être >= 18)
+CONTEXT:  PL/pgSQL function ajouter_etudiant(character varying,integer,character varying) line 5 at RAISE
+CALL
