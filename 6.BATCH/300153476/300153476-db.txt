@@ -1,22 +1,8 @@
 Chargement de la base de données...
 Execution de DDL.sql
+DROP TABLE
+DROP TABLE
 NOTICE:  table "message_chatia" does not exist, skipping
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
-DROP TABLE
 NOTICE:  table "session_chatia" does not exist, skipping
 NOTICE:  table "participation_concours" does not exist, skipping
 NOTICE:  table "concours" does not exist, skipping
@@ -32,6 +18,20 @@ NOTICE:  table "cours" does not exist, skipping
 NOTICE:  table "professeur" does not exist, skipping
 NOTICE:  table "enfant" does not exist, skipping
 NOTICE:  table "parent" does not exist, skipping
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
 CREATE TABLE
 COMMENT
 COMMENT
@@ -125,24 +125,24 @@ DELETE 1
 DELETE 0
 Execution de DCL.sql
 DROP ROLE
+DROP ROLE
 NOTICE:  role "admin_diallo" does not exist, skipping
 NOTICE:  role "prof_martin" does not exist, skipping
 NOTICE:  role "parent_tremblay" does not exist, skipping
 DROP ROLE
 NOTICE:  role "enfant_emma" does not exist, skipping
-DROP ROLE
-DROP ROLE
 NOTICE:  role "auditeur_sys" does not exist, skipping
 DROP ROLE
-NOTICE:  role "admin_plateforme" does not exist, skipping
 DROP ROLE
+NOTICE:  role "admin_plateforme" does not exist, skipping
 NOTICE:  role "professeur_role" does not exist, skipping
+DROP ROLE
+DROP ROLE
 DROP ROLE
 NOTICE:  role "parent_role" does not exist, skipping
 NOTICE:  role "enfant_role" does not exist, skipping
-DROP ROLE
-DROP ROLE
 NOTICE:  role "lecture_seule" does not exist, skipping
+DROP ROLE
 DROP ROLE
 CREATE ROLE
 COMMENT
@@ -337,13 +337,13 @@ Execution de DQL.sql
 
            titre_devoir            |        titre_cours        | date_limite | jours_restants 
 -----------------------------------+---------------------------+-------------+----------------
- Résumé de lecture                 | Lecture et compréhension  | 2026-04-18  |              0
- Rapport expérience                | Introduction aux sciences | 2026-04-19  |              1
- Exercices additions/soustractions | Arithmétique de base      | 2026-04-20  |              2
- Animation Scratch                 | Programmation Scratch     | 2026-04-21  |              3
- Problèmes algébriques             | Algèbre niveau secondaire | 2026-04-22  |              4
- My daily routine                  | English conversation      | 2026-04-24  |              6
- Nouvelle courte                   | Rédaction créative        | 2026-04-25  |              7
+ Rapport expérience                | Introduction aux sciences | 2026-04-19  |              0
+ Exercices additions/soustractions | Arithmétique de base      | 2026-04-20  |              1
+ Animation Scratch                 | Programmation Scratch     | 2026-04-21  |              2
+ Problèmes algébriques             | Algèbre niveau secondaire | 2026-04-22  |              3
+ My daily routine                  | English conversation      | 2026-04-24  |              5
+ Nouvelle courte                   | Rédaction créative        | 2026-04-25  |              6
+ Chronologie historique            | Histoire du Canada        | 2026-04-26  |              7
 (7 rows)
 
         titre_cours        | nb_evaluations | moyenne_generale | note_min | note_max 
