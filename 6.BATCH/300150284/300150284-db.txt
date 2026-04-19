@@ -1,24 +1,10 @@
 Chargement de la base de données...
 Execution de DDL.sql
-NOTICE:  table "etudiants" does not exist, skipping
-DROP TABLE
-CREATE TABLE
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  the database system is shutting down
 Execution de DML.sql
-DELETE 0
-INSERT 0 5
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  the database system is shutting down
 Execution de DCL.sql
-DO
-GRANT
-GRANT
-GRANT
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  the database system is shutting down
 Execution de DQL.sql
- id |   nom   | prenom | age |    programme    
-----+---------+--------+-----+-----------------
-  1 | Dupont  | Alice  |  20 | Informatique
-  2 | Martin  | Bob    |  22 | Réseau
-  3 | Bernard | Claire |  19 | Cybersécurité
-  4 | Petit   | David  |  21 | Base de données
-  5 | Robert  | Emma   |  23 | Programmation
-(5 rows)
-
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  the database system is shutting down
 Chargement terminé.
