@@ -11,10 +11,8 @@ Construire une mini base NoSQL avec :
 
 ---
 
-
-*
 # Nom : Sow
-# Prenom : Amadoi
+# Prenom : Amadou
 
 # 🧱 1️⃣ Lancer PostgreSQL avec Docker
 
