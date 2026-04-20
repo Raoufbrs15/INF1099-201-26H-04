@@ -1,83 +1,108 @@
-# 📚 TP 03 - Base de Données Bibliothèque Universitaire
-# Ton Nom
-# Ton Matricule
+# 📚 TP 03 - PostgreSQL avec Docker et pgAdmin
 
 ---
 
-Ce travail consiste à concevoir et normaliser une base de données pour une bibliothèque universitaire.
+## 🎯 Objectif
+
+- Installer PostgreSQL avec Docker  
+- Charger la base de données Sakila  
+- Explorer la base avec pgAdmin  
+- Exécuter des requêtes SQL  
 
 ---
 
-## 🎯 **Objectifs**
-1. Identifier les entités du système
-2. Définir les relations et cardinalités
-3. Appliquer les formes normales (1FN, 2FN, 3FN)
-4. Concevoir un diagramme Entité/Relation
-5. Préparer la base pour une implémentation SQL
+# 🚀 Lancement de PostgreSQL avec Docker
 
----
+```bash
+docker container run -d --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=appdb -p 5432:5432 postgres:16
+🔗 Connexion à PostgreSQL
+docker container exec -it postgres psql -U postgres -d appdb
+📊 Liste des tables
 
-# 🚀 Étapes du projet
+🧪 Requêtes SQL
+👥 Nombre d’acteurs
+SELECT COUNT(*) FROM actor;
 
-## Étape 1 : Analyse du système
+🎥 Nombre de films
+SELECT COUNT(*) FROM film;
 
-Le système de bibliothèque permet :
+⭐ Films contenant "Star"
+SELECT title FROM film WHERE title ILIKE '%Star%';
 
-- Gestion des membres
-- Gestion des livres
-- Gestion des emprunts
-- Gestion des paiements
-- Gestion des employés
+👤 Exemple de clients
+SELECT customer_id, first_name, last_name, email
+FROM customer
+LIMIT 5;
 
----
+🖥️ Connexion avec pgAdmin
+Host : localhost
+Port : 5432
+User : postgres
+Password : postgres
+Database : appdb
+📸 Interface pgAdmin
 
-## Étape 2 : Identification des entités
+📁 Structure du projet
+📁 projet
+ ├── README.md
+ ├── 📁 images
+ │    ├── tables.png
+ │    ├── actor.png
+ │    ├── film.png
+ │    ├── star.png
+ │    ├── customer.png
+ │    ├── pgadmin.png
+📚 Projet personnel : Bibliothèque universitaire
+🎯 Description
 
-Les entités principales sont :
+Système de gestion d’une bibliothèque universitaire permettant :
 
-- Membre
-- Adresse
-- Livre
-- Catégorie
-- Auteur
-- Emprunt
-- Ligne_Emprunt
-- Paiement
-- Employé
+Gestion des membres
+Gestion des livres
+Gestion des emprunts
+Gestion des paiements
+Gestion des employés
+🧩 Entités
+Membre
+Adresse
+Livre
+Catégorie
+Auteur
+Emprunt
+Ligne_Emprunt
+Paiement
+Employé
+🧪 Normalisation
+1FN
 
----
-
-## Étape 3 : Relations
-
-- Un membre peut effectuer plusieurs emprunts
-- Un membre peut avoir plusieurs adresses
-- Un emprunt contient plusieurs livres
-- Un livre appartient à une catégorie
-- Un auteur peut écrire plusieurs livres
-- Un emprunt peut avoir un paiement
-- Un employé gère les emprunts
-
----
-
-## Étape 4 : Diagramme E/R
-
-<details>
-<summary>🖼️ Diagramme</summary>
-
-![Diagramme](images/diagramme.png)
-
-</details>
-
----
-
-## Étape 5 : Première forme normale (1FN)
-
-- Suppression des groupes répétés
-- Données atomiques
-
-Exemple :
-
-```sql
 Membre(id_membre, nom, email)
-Adresse(id_adresse, rue, ville, id_membre)
+
+2FN
+
+Emprunt(id_emprunt, date_emprunt, id_membre)
+
+3FN
+
 Livre(id_livre, titre, id_categorie)
+
+👨‍🎓 Auteur
+
+Projet réalisé dans le cadre du cours de bases de données.
+
+
+---
+
+# ⚠️ IMPORTANT
+
+👉 Avant de déposer sur GitHub :
+
+Assure-toi que ton dossier contient :
+
+
+images/
+tables.png
+actor.png
+film.png
+star.png
+customer.png
+pgadmin.png
