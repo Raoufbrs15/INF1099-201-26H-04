@@ -1,159 +1,60 @@
-## 📝 DML — Manipulation des données
-
-### Étape 4 : Insérer les données (INSERT)
-
-```sql
 -- ============================================================
--- DML - Data Manipulation Language
--- Bibliothèque Universitaire
--- Prérequis : DDL.sql do## 🏗️ DDL — Définition des structures
-
-### Étape 1 : Connexion et création de la base
-
-```bash
-docker container exec --interactive --tty postgres bash
-psql -U postgres
-```
-
-```sql
-CREATE DATABASE gestion_bibliotheque;
-\c gestion_bibliotheque
-CREATE SCHEMA IF NOT EXISTS bibliotheque;
-```
-
----
-
-### Étape 2 : Création des tables
-
-```sql
--- ============================================================
--- DDL - Data Definition Language
--- Bibliothèque Universitaire
+-- DML - Insertion et manipulation
 -- ============================================================
 
-CREATE SCHEMA IF NOT EXISTS bibliotheque;
+-- Auteurs
+INSERT INTO bibliotheque.Auteur (Nom, Prenom, Nationalite) VALUES
+('Hugo', 'Victor', 'Française'),
+('Rowling', 'J.K.', 'Britannique'),
+('Camus', 'Albert', 'Française');
 
--- ------------------------------------------------------------
--- Table : Membre
--- ------------------------------------------------------------
-CREATE TABLE bibliotheque.Membre (
-    ID_Membre   SERIAL PRIMARY KEY,
-    Nom         TEXT NOT NULL,
-    Prenom      TEXT NOT NULL,
-    Telephone   TEXT,
-    Email       TEXT
-);
+-- Catégories
+INSERT INTO bibliotheque.Categorie (Nom_Categorie) VALUES
+('Roman'),
+('Science-Fiction'),
+('Philosophie');
 
--- ------------------------------------------------------------
--- Table : Adresse
--- ------------------------------------------------------------
-CREATE TABLE bibliotheque.Adresse (
-    ID_Adresse  SERIAL PRIMARY KEY,
-    Numero_Rue  TEXT,
-    Rue         TEXT NOT NULL,
-    Ville       TEXT NOT NULL,
-    Code_Postal TEXT NOT NULL,
-    ID_Membre   INT  NOT NULL REFERENCES bibliotheque.Membre(ID_Membre)
-);
+-- Livres
+INSERT INTO bibliotheque.Livre (Titre, Annee_Publication, ISBN, ID_Auteur, ID_Categorie) VALUES
+('Les Misérables', 1862, '978-2-07-040850-4', 1, 1),
+('Harry Potter à l''école des sorciers', 1997, '978-2-07-054100-9', 2, 1),
+('L''Étranger', 1942, '978-2-07-036024-5', 3, 3);
 
--- ------------------------------------------------------------
--- Table : Auteur
--- ------------------------------------------------------------
-CREATE TABLE bibliotheque.Auteur (
-    ID_Auteur   SERIAL PRIMARY KEY,
-    Nom         TEXT NOT NULL,
-    Prenom      TEXT NOT NULL,
-    Nationalite TEXT
-);
+-- Membres
+INSERT INTO bibliotheque.Membre (Nom, Prenom, Telephone, Email) VALUES
+('Tremblay', 'Marie', '514-111-2222', 'marie@email.com'),
+('Gagnon', 'Luc', '438-333-4444', 'luc@email.com');
 
--- ------------------------------------------------------------
--- Table : Categorie
--- ------------------------------------------------------------
-CREATE TABLE bibliotheque.Categorie (
-    ID_Categorie   SERIAL PRIMARY KEY,
-    Nom_Categorie  TEXT NOT NULL
-);
+-- Adresses
+INSERT INTO bibliotheque.Adresse (Numero_Rue, Rue, Ville, Code_Postal, ID_Membre) VALUES
+('12', 'Rue Sainte-Catherine', 'Montréal', 'H3B1A7', 1),
+('5', 'Boulevard Laurier', 'Québec', 'G1V2M2', 2);
 
--- ------------------------------------------------------------
--- Table : Livre
--- ------------------------------------------------------------
-CREATE TABLE bibliotheque.Livre (
-    ID_Livre          SERIAL PRIMARY KEY,
-    Titre             TEXT NOT NULL,
-    Annee_Publication INT,
-    ISBN              TEXT,
-    ID_Auteur         INT  NOT NULL REFERENCES bibliotheque.Auteur(ID_Auteur),
-    ID_Categorie      INT  NOT NULL REFERENCES bibliotheque.Categorie(ID_Categorie)
-);
+-- Employés
+INSERT INTO bibliotheque.Employe (Nom, Prenom, Poste) VALUES
+('Côté', 'Jean', 'Bibliothécaire'),
+('Roy', 'Sophie', 'Assistant');
 
--- ------------------------------------------------------------
--- Table : Employe
--- ------------------------------------------------------------
-CREATE TABLE bibliotheque.Employe (
-    ID_Employe  SERIAL PRIMARY KEY,
-    Nom         TEXT NOT NULL,
-    Prenom      TEXT NOT NULL,
-    Poste       TEXT
-);
+-- Emprunts
+INSERT INTO bibliotheque.Emprunt (Date_Emprunt, Date_Retour_Prevue, Statut, ID_Membre, ID_Employe) VALUES
+('2024-03-01', '2024-03-15', 'En cours', 1, 1),
+('2024-03-05', '2024-03-20', 'Terminé', 2, 2);
 
--- ------------------------------------------------------------
--- Table : Emprunt
--- ------------------------------------------------------------
-CREATE TABLE bibliotheque.Emprunt (
-    ID_Emprunt         SERIAL PRIMARY KEY,
-    Date_Emprunt       DATE NOT NULL,
-    Date_Retour_Prevue DATE NOT NULL,
-    Statut             TEXT NOT NULL,
-    ID_Membre          INT  NOT NULL REFERENCES bibliotheque.Membre(ID_Membre),
-    ID_Employe         INT  NOT NULL REFERENCES bibliotheque.Employe(ID_Employe)
-);
+-- Lignes
+INSERT INTO bibliotheque.Ligne_Emprunt (Date_Retour_Effective, ID_Emprunt, ID_Livre) VALUES
+(NULL, 1, 1),
+('2024-03-18', 2, 2);
 
--- ------------------------------------------------------------
--- Table : Ligne_Emprunt
--- ------------------------------------------------------------
-CREATE TABLE bibliotheque.Ligne_Emprunt (
-    ID_Ligne              SERIAL PRIMARY KEY,
-    Date_Retour_Effective DATE,
-    ID_Emprunt            INT NOT NULL REFERENCES bibliotheque.Emprunt(ID_Emprunt),
-    ID_Livre              INT NOT NULL REFERENCES bibliotheque.Livre(ID_Livre)
-);
+-- Paiements
+INSERT INTO bibliotheque.Paiement (Date_Paiement, Montant, Mode_Paiement, ID_Emprunt) VALUES
+('2024-03-21', 5.00, 'Carte', 1),
+('2024-03-19', 2.50, 'Cash', 2);
 
--- ------------------------------------------------------------
--- Table : Paiement
--- ------------------------------------------------------------
-CREATE TABLE bibliotheque.Paiement (
-    ID_Paiement   SERIAL PRIMARY KEY,
-    Date_Paiement DATE          NOT NULL,
-    Montant       NUMERIC(10,2) NOT NULL,
-    Mode_Paiement TEXT          NOT NULL,
-    ID_Emprunt    INT           NOT NULL REFERENCES bibliotheque.Emprunt(ID_Emprunt)
-);
-```
+-- UPDATE
+UPDATE bibliotheque.Emprunt
+SET Statut = 'Terminé'
+WHERE ID_Emprunt = 1;
 
----
-
-### Étape 3 : Vérifier les tables créées
-
-```sql
-\dt bibliotheque.*
-```
-
-**Output attendu :**
-
-```
-         List of relations
-   Schema       |     Name      | Type  |  Owner
-----------------+---------------+-------+----------
- bibliotheque   | adresse       | table | postgres
- bibliotheque   | auteur        | table | postgres
- bibliotheque   | categorie     | table | postgres
- bibliotheque   | employe       | table | postgres
- bibliotheque   | emprunt       | table | postgres
- bibliotheque   | ligne_emprunt | table | postgres
- bibliotheque   | livre         | table | postgres
- bibliotheque   | membre        | table | postgres
- bibliotheque   | paiement      | table | postgres
-(9 rows)
-```
-
----
+-- DELETE
+DELETE FROM bibliotheque.Paiement
+WHERE ID_Paiement = 2;
