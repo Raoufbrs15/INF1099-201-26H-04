@@ -64,8 +64,8 @@ bec49bcd855e  postgres:16  Up 25 minutes   0.0.0.0:5432->5432/tcp   postgres
 ```
 
 📸 **Capture — Conteneur PostgreSQL lancé (`docker ps`) :**
+<img width="1078" height="141" alt="Capture d’écran 2026-04-20 165528" src="https://github.com/user-attachments/assets/848c8f7e-d65e-4a0c-a252-09d7bb26cf77" />
 
-![Capture étape 1 - docker ps](images/etape1-docker-ps.png)
 
 ---
 
@@ -92,7 +92,8 @@ docker cp postgres-sakila-insert-data.sql postgres:/data.sql
 
 📸 **Capture — Copie des fichiers dans le conteneur :**
 
-![Capture étape 2a - docker cp](images/etape2a-docker-cp.png)
+<img width="757" height="241" alt="2" src="https://github.com/user-attachments/assets/1ef197be-9867-40de-9c5d-5c7091c7b2e0" />
+
 
 ### Exécution des scripts SQL
 
@@ -105,7 +106,6 @@ docker exec -i postgres psql -U postgres -d appdb -f /data.sql
 
 📸 **Capture — Exécution des scripts SQL (INSERT / ALTER TABLE) :**
 
-![Capture étape 2b - importation SQL](images/etape2b-import-sql.png)
 
 ---
 
@@ -148,8 +148,7 @@ appdb=# \dt
 ```
 
 📸 **Capture — Liste des 21 tables (`\dt`) :**
-
-![Capture étape 3 - liste des tables](images/etape3-liste-tables.png)
+<img width="477" height="577" alt="3" src="https://github.com/user-attachments/assets/9b72811b-5d8b-4304-a9ba-3564c65fa9c3" />
 
 ---
 
@@ -162,8 +161,9 @@ choco install pgadmin4
 > pgAdmin 4 v9.11.0 installé avec succès.
 
 📸 **Capture — Installation pgAdmin 4 via Chocolatey :**
+<img width="668" height="635" alt="4" src="https://github.com/user-attachments/assets/3cb0b89c-9d63-4b8c-896d-018851f54629" />
 
-![Capture étape 4a - installation pgadmin](images/etape4a-install-pgadmin.png)
+
 
 ### Paramètres de connexion
 
@@ -176,8 +176,7 @@ choco install pgadmin4
 | Password | postgres |
 
 📸 **Capture — Dashboard pgAdmin 4 connecté au serveur :**
-
-![Capture étape 4b - pgadmin dashboard](images/etape4b-pgadmin-dashboard.png)
+<img width="1920" height="1012" alt="5" src="https://github.com/user-attachments/assets/264e106c-f423-4b8d-8443-97d064cab180" />
 
 ---
 
@@ -195,7 +194,8 @@ SELECT COUNT(*) FROM film;
 
 📸 **Capture — Résultat COUNT films :**
 
-![Capture requête 1 - count film](images/etape5-count-film.png)
+<img width="1406" height="826" alt="07" src="https://github.com/user-attachments/assets/3dd99796-f8ab-4df2-8f64-432ec21bc514" />
+
 
 ---
 
@@ -210,8 +210,8 @@ SELECT COUNT(*) FROM actor;
 | 200   |
 
 📸 **Capture — Résultat COUNT acteurs :**
+<img width="1261" height="945" alt="6" src="https://github.com/user-attachments/assets/2b045b8a-f9af-42e4-9a13-7cd850aec7b3" />
 
-![Capture requête 2 - count actor](images/etape5-count-actor.png)
 
 ---
 
@@ -228,7 +228,8 @@ SELECT title FROM film WHERE title ILIKE '%Star%';
 
 📸 **Capture — Résultat recherche ILIKE '%Star%' :**
 
-![Capture requête 3 - ilike star](images/etape5-ilike-star.png)
+
+<img width="743" height="606" alt="image" src="https://github.com/user-attachments/assets/ce0166db-f52c-418d-a2f6-9e174e86de5b" />
 
 ---
 
@@ -250,7 +251,8 @@ LIMIT 5;
 
 📸 **Capture — Résultat SELECT customers LIMIT 5 :**
 
-![Capture requête 4 - customers limit 5](images/etape5-customers-limit5.png)
+<img width="872" height="754" alt="09" src="https://github.com/user-attachments/assets/ae357ff2-bbe4-4596-9c9d-574d01471467" />
+
 
 ---
 
