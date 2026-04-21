@@ -38,6 +38,13 @@ jobs:
           cd 7.PLSQL && pwsh .scripts/run.ps1 && cd ..
           cd 8.NoSQL && pwsh .scripts/run.ps1 && cd ..
 
+      - name: Grade Students
+        shell: pwsh
+        env:
+          LMS_URL: ${{ secrets.LMS_URL }}            # GitHub variable
+          API_SYNC_TOKEN: ${{ secrets.API_SYNC_TOKEN }} # GitHub secret
+        run: pwsh .scripts/grading/push_grades.ps1
+
       - name: Commit changes
         run: |
           git config user.email "action@github.com"
