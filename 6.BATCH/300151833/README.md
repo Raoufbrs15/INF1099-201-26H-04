@@ -23,13 +23,13 @@ docker container run -d \
 ```powershell
 docker container ls
 ```
-![Conteneur actif](./images/6_1.png)
+<img width="947" height="142" alt="6 1" src="https://github.com/user-attachments/assets/99afcdfb-713b-4ded-929f-7687690b6fe8" />
 
 ### 3. Exécuter le script PowerShell
 ```powershell
 powershell -ExecutionPolicy Bypass -File ./load-db.ps1
 ```
-![Exécution du script](./images/6_2.png)
+<img width="906" height="312" alt="6 2" src="https://github.com/user-attachments/assets/3e74101e-feb2-4a1d-93af-caa4ac9e40e4" />
 
 ### 4. Vérification dans psql
 ```powershell
@@ -38,7 +38,7 @@ docker container exec -it postgres-lab psql -U postgres -d ecole
 ```sql
 SELECT * FROM etudiants;
 ```
-![Vérification psql](./images/6_3.png)
+<img width="892" height="276" alt="6 3" src="https://github.com/user-attachments/assets/f158765d-aad9-4c61-b485-95c15fa70fa4" />
 
 ## Résultat
 Les 5 étudiants sont bien insérés dans la base de données `ecole` :
